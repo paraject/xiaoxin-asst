@@ -244,6 +244,8 @@ export default {
         :subjectNum="subjectNum" ref="objectiveRef"></objective>
       <subjective :taskInfo="taskInfo" :userInfo="userInfo" :taskData="taskData" :objectNum="objectNum"
         :subjectNum="subjectNum" @submit-task="preSubmitTask"></subjective>
+
+      <button class="btn btn-primary text-white mt-5" @click="preSubmitTask()" v-if="subjectNum==0">提交预览</button>
     </div>
     <footer-box></footer-box>
 
@@ -256,11 +258,13 @@ export default {
         <h3 class="text-base text-red-600 font-bold">这将是您的最终上传数据，请仔细核对，提交后不可更改，请不要一时脑热！</h3>
 
         <p class="py-4 text-lg text-blue-500 font-bold">选择题</p>
+        <div v-if="objectNum==0" class="">该作业没有选择题</div>
         <div>
-          <span class="badge badge-secondary mr-1 p-4 text-lg font-bold text-white" v-for="(obj, index) in objectData" :key="index">{{ obj }}</span>
+          <span class="badge badge-secondary mr-1 p-4 text-lg font-bold text-white my-1" v-for="(obj, index) in objectData" :key="index">{{ obj }}</span>
         </div>
 
         <p class="py-4 text-lg text-blue-500 font-bold">主观题</p>
+        <div v-if="subjectNum==0" class="mb-5">该作业没有主观题</div>
         <div v-for="(sub, index) in subjectSelf" :key="index">
           <img :src="sub.url" class="my-2 rounded-xl">
         </div>
