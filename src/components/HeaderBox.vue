@@ -99,7 +99,7 @@ export default {
   <div id="about" class="modal cursor-pointer ">
     <div class="modal-box relative overflow-x-hidden max-w-6xl leading-relaxed ">
 
-      <p class="text-blue-500 font-bold text-2xl">小鑫助手·焕然一新 V2.0.0</p>
+      <p class="text-blue-500 font-bold text-2xl">小鑫助手·焕然一新 V1.8.1</p>
 
       <div class="mt-4">
         <p class="text-gray-700 font-bold mb-3">交流/通知</p>
