@@ -97,7 +97,7 @@ export default {
   </div>
 
   <div id="about" class="modal cursor-pointer ">
-    <div class="modal-box relative overflow-x-hidden max-w-full w-full max-h-full h-5/6 bg-white/90 rounded-none md:px-16 leading-relaxed ">
+    <div class="modal-box relative overflow-x-hidden max-w-full w-full max-h-full h-5/6 bg-gray-200/90 rounded-none md:px-16 leading-relaxed ">
 
       <p class="font-bold text-2xl">小鑫助手·焕然一新 V1.8.3</p>
 
