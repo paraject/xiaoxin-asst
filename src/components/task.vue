@@ -38,6 +38,7 @@ export default {
       this.subjectSelf = subjectSelf;
       this.subjectOther = subjectOther;
       this.objectData = this.$refs['objectiveRef'].objectData;
+      this.objectFullData = this.$refs['objectiveRef'].objectFullData;
 
       this.preview = true;
 
@@ -45,12 +46,10 @@ export default {
       let objective = [];
       let subjective = [];
 
-      this.taskData.forEach((task) => {
-        //是客观题
-        if (task.hasSubjectiveItem == 0) {
-          objective.push(`${task.teaId},${this.objectData[task.teaCode - 1].toUpperCase()}`)
-        }
-      })
+      for (let i = 0; i <this.objectFullData.length; i++) {
+        let tea = this.objectFullData[i];
+        objective.push(`${tea.teaId},${this.objectData[i].toUpperCase()}`)
+      }
 
 
       if (subjectOther.length == 0) {
@@ -260,7 +259,7 @@ export default {
         <p class="py-4 text-lg text-blue-500 font-bold">选择题</p>
         <div v-if="objectNum==0" class="">该作业没有选择题</div>
         <div>
-          <span class="badge badge-secondary mr-1 p-4 text-lg font-bold text-white my-1" v-for="(obj, index) in objectData" :key="index">{{ obj }}</span>
+          <span class="badge badge-secondary mr-1 p-4 text-lg font-bold text-white my-1 uppercase" v-for="(obj, index) in objectData" :key="index">{{ obj }}</span>
         </div>
 
         <p class="py-4 text-lg text-blue-500 font-bold">主观题</p>

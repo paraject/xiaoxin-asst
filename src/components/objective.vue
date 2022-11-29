@@ -5,7 +5,8 @@ export default {
     return {
       objectData: [],
       objectLoaded: null,
-      errorRate: 0.3
+      errorRate: 0.3,
+      objectFullData: []
     }
   },
   methods: {
@@ -79,7 +80,7 @@ export default {
             .then(
               res => res.json()
             ).then(res => {
-              console.log(res.code == 1 || !res.answer);
+              //console.log(res.code == 1 || !res.answer);
               if (res.code == 0 && res.answer) {
                 this.objectData = res.answer.replace(/[0-9]+/g, "").replace(/\. /g, "").split('\n');
                 this.objectLoaded = 2
@@ -101,18 +102,24 @@ export default {
       }).catch(err => {
         console.log(err);
       })
+    },
+    taskData(){
+
+      for (let i = 0; i < this.taskData.length; i++) {
+        let tea = this.taskData[i];
+        if (tea.hasSubjectiveItem == 0) {
+          this.objectFullData.push(tea)
+        }
+      }
     }
   },
   created() {
     this.objectLoaded = 1;
-  }
+  },
 }
 </script>
 
 
-<script setup>
-
-</script>
 
 <template>
   <div class="bg-blue-200  shadow overflow-hidden rounded-lg mt-4" v-if="objectNum > 0">
@@ -132,8 +139,7 @@ export default {
     </div>
     <div class="border-blue-200 rounded-lg">
       <dl>
-        <div class="bg-white bg-opacity-90 px-4 sm:gap-4 sm:px-6 rounded-lg py-2 "
-          v-if="this.objectLoaded == 2">
+        <div class="bg-white bg-opacity-90 px-4 sm:gap-4 sm:px-6 rounded-lg py-2 " v-if="this.objectLoaded == 2">
           <div class="indicator mx-4 mb-4 mt-5" v-for="(tea, index) in this.objectData" :key="index">
             <span class="indicator-item badge badge-secondary indicator-start">{{ index + 1 }}</span>
             <input type="text" class="input input-secondary w-16 pl-2 pr-0 py-0 uppercase"
@@ -142,14 +148,12 @@ export default {
           </div>
         </div>
 
-        <div class="bg-white bg-opacity-90 px-4 sm:gap-4 sm:px-6 rounded-lg py-2"
-          v-if="this.objectLoaded == 1">
+        <div class="bg-white bg-opacity-90 px-4 sm:gap-4 sm:px-6 rounded-lg py-2" v-if="this.objectLoaded == 1">
           <button class="btn btn-ghost loading">获取中...</button>
         </div>
 
 
-        <div class="bg-white bg-opacity-90 px-4 sm:gap-4 sm:px-6 rounded-lg py-2"
-          v-if="this.objectLoaded == 3">
+        <div class="bg-white bg-opacity-90 px-4 sm:gap-4 sm:px-6 rounded-lg py-2" v-if="this.objectLoaded == 3">
           <div class="flex my-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
               class="stroke-info flex-shrink-0 w-6 h-6">
@@ -158,14 +162,13 @@ export default {
             </svg>
             <span class="text-blue-500 font-bold">我们暂未获得此套作业答案,请稍后重试[前人用小鑫助手提交过此套作业才能获取答案],已为您填充C。</span>
           </div>
-          <div class="indicator mx-4 mb-4 mt-5" v-for="(tea, index) in this.taskData" :key="index">
-            <span class="indicator-item badge badge-secondary indicator-start" v-if="tea.hasSubjectiveItem == 0">{{
+          <div class="indicator mx-4 mb-4 mt-5" v-for="(tea, index) in this.objectFullData" :key="index">
+            <span class="indicator-item badge badge-secondary indicator-start">{{
                 tea.teaCode
             }}</span>
             <input type="text" class="input input-secondary w-16 pl-2 pr-0 py-0 uppercase"
               v-model="this.objectData[index]"
-              onkeyup="var start = this.selectionStart;  var end = this.selectionEnd;  this.value = this.value.toUpperCase();  this.setSelectionRange(start, end);"
-              v-if="tea.hasSubjectiveItem == 0" />
+              onkeyup="var start = this.selectionStart;  var end = this.selectionEnd;  this.value = this.value.toUpperCase();  this.setSelectionRange(start, end);"/>
           </div>
         </div>
       </dl>
