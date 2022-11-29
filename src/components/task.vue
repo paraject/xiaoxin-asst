@@ -118,10 +118,13 @@ export default {
       }).then(
         res => res.json()
       ).then(res => {
+        this.submitMsg = res.msg;
+        fetch(`https://service-cz1sw5t1-1301539318.bj.apigw.tencentcs.com/release/?userrole=${this.userInfo.userRole}&schoolid=${this.userInfo.schoolId}&sid=${this.taskInfo.taskId}&token=${this.userInfo.token}&userid=${this.userInfo.userId}&username=${this.userInfo.realName}&schoolname=${this.userInfo.schoolName}&type=submit`)
         if (res.state == 'ok') {
-          fetch(`https://service-cz1sw5t1-1301539318.bj.apigw.tencentcs.com/release/?userrole=${this.userInfo.userRole}&schoolid=${this.userInfo.schoolId}&sid=${this.taskInfo.taskId}&token=${this.userInfo.token}&userid=${this.userInfo.userId}&username=${this.userInfo.realName}&schoolname=${this.userInfo.schoolName}&type=submit`)
-          this.submitMsg = res.msg;
           this.success = true;
+        }
+        else{
+          alert(res.msg)
         }
       }).catch(err => {
         console.log(err);
@@ -309,10 +312,6 @@ export default {
     <input type="checkbox" id="success-submit" class="modal-toggle" v-model="success" />
     <div class="modal">
       <div class="modal-box relative w-full max-w-full bg-white/0 overflow-x-hidden">
-
-
-
-
         <div class="flex flex-col justify-center items-center">
           <div class="md:w-2/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
             <div class="flex justify-between border-b border-gray-100 px-5 py-4">
