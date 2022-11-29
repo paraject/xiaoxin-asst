@@ -127,21 +127,21 @@ export default {
       <div class="w-1/2">客观题</div>
       <label class="input-group justify-end w-1/2">
         <select class="select select-secondary select-sm" v-model="this.errorRate">
-          <option value="0.1">10%</option>
-          <option value="0.2">20%</option>
-          <option value="0.3" selected>30%</option>
-          <option value="0.4">40%</option>
-          <option value="0.5">50%</option>
-          <option value="0.8">80%</option>
+          <option value="0.1">错10%</option>
+          <option value="0.2">错20%</option>
+          <option value="0.3" selected>错30%</option>
+          <option value="0.4">错40%</option>
+          <option value="0.5">错50%</option>
+          <option value="0.8">错80%</option>
         </select>
-        <button @click="this.randomObject()" class="btn btn-secondary btn-sm text-white">错误率</button>
+        <button @click="this.randomObject()" class="btn btn-secondary btn-sm text-white">点此设错</button>
       </label>
     </div>
     <div class="border-blue-200 rounded-lg">
       <dl>
         <div class="bg-white bg-opacity-90 px-4 sm:gap-4 sm:px-6 rounded-lg py-2 " v-if="this.objectLoaded == 2">
           <div class="indicator mx-4 mb-4 mt-5" v-for="(tea, index) in this.objectData" :key="index">
-            <span class="indicator-item badge badge-secondary indicator-start">{{ index + 1 }}</span>
+            <span class="indicator-item badge badge-secondary indicator-start text-white font-bold">{{ index + 1 }}</span>
             <input type="text" class="input input-secondary w-16 pl-2 pr-0 py-0 uppercase"
               onkeyup="var start = this.selectionStart;  var end = this.selectionEnd;  this.value = this.value.toUpperCase();  this.setSelectionRange(start, end);"
               v-model="this.objectData[index]" />
@@ -163,7 +163,7 @@ export default {
             <span class="text-blue-500 font-bold">我们暂未获得此套作业答案,请稍后重试[前人用小鑫助手提交过此套作业才能获取答案],已为您填充C。</span>
           </div>
           <div class="indicator mx-4 mb-4 mt-5" v-for="(tea, index) in this.objectFullData" :key="index">
-            <span class="indicator-item badge badge-secondary indicator-start">{{
+            <span class="indicator-item badge badge-secondary indicator-start text-white font-bold">{{
                 tea.teaCode
             }}</span>
             <input type="text" class="input input-secondary w-16 pl-2 pr-0 py-0 uppercase"

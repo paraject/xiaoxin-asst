@@ -280,42 +280,55 @@ export default {
 
       <input type="checkbox" id="openShow" class="modal-toggle" />
       <div class="modal">
-        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-gray-200/90 overflow-x-hidden ">
-          <label for="openShow"
-            class="btn btn-ghost btn-sm btn-circle text-blue-600 font-bold absolute md:top-4 md:right-6 sm:text-xl sm:top-4 sm:right-2  top-1 right-1"
-            @click="cleanProvideSubject()">✕</label>
-          <label
-            class="btn btn-ghost btn-sm btn-circle  text-blue-600 font-bold absolute md:top-4 md:right-16 sm:text-xl sm:top-4 sm:right-10  top-1 right-8"
-            @click="this.randomOther()">↻</label>
+        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white overflow-x-hidden md:px-36 md:py-8 px-6 py-3">
 
-          <div class="items-center p-1 text-teal text-sm leading-5">
-            <p>{{ this.nowSubjectProvider.className }}-{{ this.nowSubjectProvider.realName }}的答案 </p>
-            <p>得分:{{ this.nowSubjectProvider.allScore }}-排名:{{ this.nowSubjectProvider.rank }}
-
-            </p>
-
+          <label class="btn btn-ghost btn-circle text-gray-900 text-base mb-3 mr-1 p-2 float-left " for="openShow"
+            @click="cleanProvideSubject()"><svg t="1669730573158" class="icon w-5 h-5" viewBox="0 0 1307 1024"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5572" width="48" height="48">
+              <path
+                d="M268.70922 566.468085h929.588652c36.312057 0 72.624113-29.049645 72.624114-72.624113 0-36.312057-29.049645-72.624113-72.624114-72.624114H305.021277l297.758865-297.758865c29.049645-29.049645 29.049645-72.624113 0-101.673759-29.049645-29.049645-72.624113-29.049645-101.673759 0L72.624113 450.269504c-14.524823 14.524823-21.787234 36.312057-21.787234 58.09929 0 21.787234 0 43.574468 21.787234 58.099291l428.48227 428.48227c29.049645 29.049645 72.624113 29.049645 101.673759 0 29.049645-29.049645 29.049645-72.624113 0-101.673759l-334.070922-326.808511z"
+                fill="" p-id="5573"></path>
+            </svg>
+            <div class=" text-gray-900 text-base mt-1 ml-2"></div>
+          </label>
+          <label class="btn btn-ghost btn-circle text-gray-900 text-base mb-3 p-2 float-left"
+            @click="this.randomOther()"><svg t="1669733067993" class="icon w-5 h-5" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7058" width="48" height="48"><path d="M187.456 425.024a336 336 0 0 0 368.384 420.224 48 48 0 0 1 12.544 95.168 432 432 0 0 1-473.664-540.16l-57.28-15.36a12.8 12.8 0 0 1-6.272-20.928l159.168-179.456a12.8 12.8 0 0 1 22.144 5.888l48.064 235.072a12.8 12.8 0 0 1-15.808 14.912l-57.28-15.36zM836.48 599.04a336 336 0 0 0-368.384-420.224 48 48 0 1 1-12.544-95.168 432 432 0 0 1 473.664 540.16l57.28 15.36a12.8 12.8 0 0 1 6.272 20.928l-159.168 179.456a12.8 12.8 0 0 1-22.144-5.888l-48.064-235.072a12.8 12.8 0 0 1 15.808-14.912l57.28 15.36z" fill="#595959" p-id="7059"></path></svg>
+            <div class=" text-gray-900 text-base mt-1 ml-2"></div>
+          </label>
+          <div class="font-bold md:mt-5 mt-3">{{ this.nowSubjectProvider.className
+            }}-{{this.nowSubjectProvider.realName}}
+            <div class=" font-normal md:mt-1 mt-1">分数-{{ this.nowSubjectProvider.allScore}} | 排名-{{this.nowSubjectProvider.rank }}</div>
           </div>
 
-          <div class="mt-1" v-for="(one, num) in this.choosenSubjectData" :key="one.teaCode">
-
-            <label class="btn gap-2 btn-ghost my-1 w-48 font-bold text-base " for="openUpload"
-              @click="this.uploadingTeaIndex = one.teaCode">
-              主观 · 第 {{ one.teaCode }} 题
-              <svg t="1661591286859" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" p-id="2908" width="20" height="20">
-                <path
-                  d="M669.553493 952.874667H118.214827C52.934827 952.874667 0.02816 905.728 0.02816 847.786667V147.797333C0.02816 89.770667 53.062827 42.752 118.214827 42.752h787.626666C971.121493 42.752 1024.02816 89.898667 1024.02816 147.797333V637.866667c0 19.370667-17.621333 34.986667-39.381333 34.986666s-39.381333-15.616-39.381334-34.986666V147.797333c0-19.370667-17.749333-34.986667-39.381333-34.986666H118.17216c-21.76 0-39.381333 15.701333-39.381333 34.986666V847.786667c0 19.370667 17.749333 34.986667 39.381333 34.986666h551.381333c21.76 0 39.381333 15.658667 39.381334 35.029334 0 19.370667-17.578667 34.986667-39.381334 34.986666zM39.366827 742.826667a41.429333 41.429333 0 0 1-27.818667-10.282667 32.384 32.384 0 0 1 0-49.578667l196.224-174.250666c35.925333-32 90.709333-39.936 136.234667-19.712l213.674666 94.976a42.581333 42.581333 0 0 0 45.312-6.570667l353.706667-314.453333c15.402667-13.653333 40.405333-13.653333 55.808 0 15.36 13.696 15.36 35.925333 0 49.578666l-353.749333 314.453334c-35.968 31.914667-90.709333 39.893333-136.277334 19.626666L308.806827 551.68a42.581333 42.581333 0 0 0-45.269334 6.570667L67.185493 732.586667a41.429333 41.429333 0 0 1-27.818666 10.24z m275.754666-350.08a105.173333 105.173333 0 0 1-105.045333-105.045334 105.173333 105.173333 0 0 1 105.045333-105.002666 105.173333 105.173333 0 0 1 105.002667 105.002666 105.173333 105.173333 0 0 1-105.002667 105.045334z m0-140.032c-19.285333 0-34.986667 15.744-34.986666 34.986666 0 19.242667 15.701333 34.986667 34.986666 34.986667 19.2 0 34.986667-15.744 34.986667-34.986667 0-19.242667-15.786667-34.986667-34.986667-34.986666z m533.845334 700.16a34.986667 34.986667 0 0 1-34.986667-34.986667v-210.090667a34.986667 34.986667 0 1 1 69.973333 0v210.048a34.986667 34.986667 0 0 1-34.986666 34.986667z m140.032-140.032a34.858667 34.858667 0 0 1-23.936-9.514667l-116.053334-108.970667-116.096 109.056a34.944 34.944 0 1 1-47.914666-50.986666l122.752-115.285334a53.12 53.12 0 0 1 82.474666 0l122.752 115.285334a34.986667 34.986667 0 0 1-23.978666 60.416z"
-                  p-id="2909" fill="#333"></path>
-              </svg>
-            </label>
-            <input type="file" id="openUpload" :name="one.teaCode" class="hidden" multiple="multiple"
-              @change="this.uploadSelf($event)" />
 
 
+          <div class="mt-5" v-for="(one, num) in this.choosenSubjectData" :key="one.teaCode">
+
+            <div class="flex flex-col items-center xl:mx-8 xl:items-start">
+                <h1 class="font-medium capitalize text-gray-800 dark:text-white text-lg">主观第 {{ one.teaCode }} 题
+                  <label class="btn btn-ghost btn-circle p-0 font-bold text-base " for="openUpload"
+                    @click="this.uploadingTeaIndex = one.teaCode">
+                    <svg t="1661591286859" class="icon w-4 h-4" viewBox="0 0 1024 1024" version="1.1"
+                      xmlns="http://www.w3.org/2000/svg" p-id="2908" width="2" height="2">
+                      <path
+                        d="M669.553493 952.874667H118.214827C52.934827 952.874667 0.02816 905.728 0.02816 847.786667V147.797333C0.02816 89.770667 53.062827 42.752 118.214827 42.752h787.626666C971.121493 42.752 1024.02816 89.898667 1024.02816 147.797333V637.866667c0 19.370667-17.621333 34.986667-39.381333 34.986666s-39.381333-15.616-39.381334-34.986666V147.797333c0-19.370667-17.749333-34.986667-39.381333-34.986666H118.17216c-21.76 0-39.381333 15.701333-39.381333 34.986666V847.786667c0 19.370667 17.749333 34.986667 39.381333 34.986666h551.381333c21.76 0 39.381333 15.658667 39.381334 35.029334 0 19.370667-17.578667 34.986667-39.381334 34.986666zM39.366827 742.826667a41.429333 41.429333 0 0 1-27.818667-10.282667 32.384 32.384 0 0 1 0-49.578667l196.224-174.250666c35.925333-32 90.709333-39.936 136.234667-19.712l213.674666 94.976a42.581333 42.581333 0 0 0 45.312-6.570667l353.706667-314.453333c15.402667-13.653333 40.405333-13.653333 55.808 0 15.36 13.696 15.36 35.925333 0 49.578666l-353.749333 314.453334c-35.968 31.914667-90.709333 39.893333-136.277334 19.626666L308.806827 551.68a42.581333 42.581333 0 0 0-45.269334 6.570667L67.185493 732.586667a41.429333 41.429333 0 0 1-27.818666 10.24z m275.754666-350.08a105.173333 105.173333 0 0 1-105.045333-105.045334 105.173333 105.173333 0 0 1 105.045333-105.002666 105.173333 105.173333 0 0 1 105.002667 105.002666 105.173333 105.173333 0 0 1-105.002667 105.045334z m0-140.032c-19.285333 0-34.986667 15.744-34.986666 34.986666 0 19.242667 15.701333 34.986667 34.986666 34.986667 19.2 0 34.986667-15.744 34.986667-34.986667 0-19.242667-15.786667-34.986667-34.986667-34.986666z m533.845334 700.16a34.986667 34.986667 0 0 1-34.986667-34.986667v-210.090667a34.986667 34.986667 0 1 1 69.973333 0v210.048a34.986667 34.986667 0 0 1-34.986666 34.986667z m140.032-140.032a34.858667 34.858667 0 0 1-23.936-9.514667l-116.053334-108.970667-116.096 109.056a34.944 34.944 0 1 1-47.914666-50.986666l122.752-115.285334a53.12 53.12 0 0 1 82.474666 0l122.752 115.285334a34.986667 34.986667 0 0 1-23.978666 60.416z"
+                        p-id="2909" fill="#3b82f6"></path>
+                    </svg>
+                  </label>
+                  <input type="file" id="openUpload" :name="one.teaCode" class="hidden" multiple="multiple"
+                    @change="this.uploadSelf($event)" />
+                </h1>
+
+                <div class="-mt-2">
+                  <span class="inline-block h-1 w-40 rounded-full bg-blue-500"></span>
+                  <span class="mx-1 inline-block h-1 w-3 rounded-full bg-blue-500"></span>
+                  <span class="inline-block h-1 w-1 rounded-full bg-blue-500"></span>
+                </div>
+              </div>
 
             <div v-for="(a, index) in one.images" :key="index">
-              <div class="rounded-sm shadow-md grid relative z-10 my-4  -mx-4 sm:-mx-0">
-                <figure><img :src="a" /></figure>
+              <div class="shadow-md grid relative z-10 my-4  -mx-4 sm:-mx-0 rounded-lg">
+                <figure><img :src="a" class=" rounded-lg" /></figure>
                 <div class="card-body p-0">
                   <div class="card-actions justify-end">
                     <button @click="this.deleteChoosenImage(num, index)"
@@ -332,8 +345,8 @@ export default {
               </div>
             </div>
             <div v-for="(b, index) in this.fileList" :key="index">
-              <div class="rounded-sm shadow-md grid relative z-10 my-4  -mx-4 sm:-mx-0" v-if="b.teaCode == one.teaCode">
-                <figure><img :src="b.url" /></figure>
+              <div class="shadow-md grid relative z-10 my-4 -mx-4 sm:-mx-0 rounded-lg" v-if="b.teaCode == one.teaCode">
+                <figure><img :src="b.url" class="rounded-lg" /></figure>
                 <div class="card-body p-0">
                   <div class="card-actions justify-end">
                     <button @click="this.deleteSelfImage(index)"
@@ -352,8 +365,8 @@ export default {
 
           </div>
           <div class="mt-16">
-            <label class="btn btn-ghost text-blue-500" @click="this.submitTask()" for="openShow">提交预览</label>
-            <label @click="this.randomOther()" class="btn btn-ghost text-blue-500">再来一瓶</label>
+            <label class="btn btn-accent text-white mr-2" @click="this.submitTask()" for="openShow">提交预览</label>
+            <label @click="this.randomOther()" class="btn btn-secondary text-white mr-2">再来一瓶</label>
             <label for="openShow" class="btn btn-ghost text-blue-500" @click="cleanProvideSubject()">关闭</label>
           </div>
         </div>
@@ -362,29 +375,50 @@ export default {
 
       <!--手动上传-->
       <input type="checkbox" id="manual" class="modal-toggle" />
-      <div class="modal">
-        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-gray-200/90">
-          <label for="manual" class="btn btn-ghost btn-sm btn-circle text-blue-600 font-bold absolute md:top-4 md:right-6 sm:text-xl sm:top-4 sm:right-2  top-1 right-1"
-            @click="cleanProvideSubject()">✕</label>
-          <span class="my-4" v-for="(one, index) in this.taskData" :key="index">
+      <div class="modal justify-start">
+        <div
+          class="modal-box overflow-x-hidden w-full max-w-full rounded-none max-h-full h-full bg-white md:px-36 md:py-8 px-6 py-3">
+          <label class="btn btn-ghost text-gray-900 text-base mb-3 px-0 py-0 float-left" for="manual"
+            @click="cleanProvideSubject()"><svg t="1669730573158" class="icon w-5 h-5" viewBox="0 0 1307 1024"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5572" width="48" height="48">
+              <path
+                d="M268.70922 566.468085h929.588652c36.312057 0 72.624113-29.049645 72.624114-72.624113 0-36.312057-29.049645-72.624113-72.624114-72.624114H305.021277l297.758865-297.758865c29.049645-29.049645 29.049645-72.624113 0-101.673759-29.049645-29.049645-72.624113-29.049645-101.673759 0L72.624113 450.269504c-14.524823 14.524823-21.787234 36.312057-21.787234 58.09929 0 21.787234 0 43.574468 21.787234 58.099291l428.48227 428.48227c29.049645 29.049645 72.624113 29.049645 101.673759 0 29.049645-29.049645 29.049645-72.624113 0-101.673759l-334.070922-326.808511z"
+                fill="" p-id="5573"></path>
+            </svg>
+            <div class=" text-gray-900 text-base mt-1 ml-2"></div>
+          </label>
+          <div class="font-bold md:mt-5 mt-3">手动上传</div>
+
+          <div class="mt-10" v-for="(one, index) in this.taskData" :key="index">
             <div v-if="one.hasSubjectiveItem == 1" class="flex-col flex">
-              <label class="btn gap-2 btn-ghost my-1 w-48 font-bold text-base " for="openUpload"
-                @click="this.uploadingTeaIndex = one.teaCode">
-                主观 · 第 {{ one.teaCode }} 题
-                <svg t="1661591286859" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg" p-id="2908" width="20" height="20">
-                  <path
-                    d="M669.553493 952.874667H118.214827C52.934827 952.874667 0.02816 905.728 0.02816 847.786667V147.797333C0.02816 89.770667 53.062827 42.752 118.214827 42.752h787.626666C971.121493 42.752 1024.02816 89.898667 1024.02816 147.797333V637.866667c0 19.370667-17.621333 34.986667-39.381333 34.986666s-39.381333-15.616-39.381334-34.986666V147.797333c0-19.370667-17.749333-34.986667-39.381333-34.986666H118.17216c-21.76 0-39.381333 15.701333-39.381333 34.986666V847.786667c0 19.370667 17.749333 34.986667 39.381333 34.986666h551.381333c21.76 0 39.381333 15.658667 39.381334 35.029334 0 19.370667-17.578667 34.986667-39.381334 34.986666zM39.366827 742.826667a41.429333 41.429333 0 0 1-27.818667-10.282667 32.384 32.384 0 0 1 0-49.578667l196.224-174.250666c35.925333-32 90.709333-39.936 136.234667-19.712l213.674666 94.976a42.581333 42.581333 0 0 0 45.312-6.570667l353.706667-314.453333c15.402667-13.653333 40.405333-13.653333 55.808 0 15.36 13.696 15.36 35.925333 0 49.578666l-353.749333 314.453334c-35.968 31.914667-90.709333 39.893333-136.277334 19.626666L308.806827 551.68a42.581333 42.581333 0 0 0-45.269334 6.570667L67.185493 732.586667a41.429333 41.429333 0 0 1-27.818666 10.24z m275.754666-350.08a105.173333 105.173333 0 0 1-105.045333-105.045334 105.173333 105.173333 0 0 1 105.045333-105.002666 105.173333 105.173333 0 0 1 105.002667 105.002666 105.173333 105.173333 0 0 1-105.002667 105.045334z m0-140.032c-19.285333 0-34.986667 15.744-34.986666 34.986666 0 19.242667 15.701333 34.986667 34.986666 34.986667 19.2 0 34.986667-15.744 34.986667-34.986667 0-19.242667-15.786667-34.986667-34.986667-34.986666z m533.845334 700.16a34.986667 34.986667 0 0 1-34.986667-34.986667v-210.090667a34.986667 34.986667 0 1 1 69.973333 0v210.048a34.986667 34.986667 0 0 1-34.986666 34.986667z m140.032-140.032a34.858667 34.858667 0 0 1-23.936-9.514667l-116.053334-108.970667-116.096 109.056a34.944 34.944 0 1 1-47.914666-50.986666l122.752-115.285334a53.12 53.12 0 0 1 82.474666 0l122.752 115.285334a34.986667 34.986667 0 0 1-23.978666 60.416z"
-                    p-id="2909" fill="#333333"></path>
-                </svg>
-              </label>
-              <input type="file" id="openUpload" :name="one.teaCode" class="hidden" multiple="multiple"
-                @change="this.uploadSelf($event)" />
+
+
+              <div class="flex flex-col items-center xl:mx-8 xl:items-start">
+                <h1 class="font-medium capitalize text-gray-800 dark:text-white text-lg">主观第 {{ one.teaCode }} 题
+                  <label class="btn btn-ghost btn-circle p-0 font-bold text-base " for="openUpload"
+                    @click="this.uploadingTeaIndex = one.teaCode">
+                    <svg t="1661591286859" class="icon w-4 h-4" viewBox="0 0 1024 1024" version="1.1"
+                      xmlns="http://www.w3.org/2000/svg" p-id="2908" width="2" height="2">
+                      <path
+                        d="M669.553493 952.874667H118.214827C52.934827 952.874667 0.02816 905.728 0.02816 847.786667V147.797333C0.02816 89.770667 53.062827 42.752 118.214827 42.752h787.626666C971.121493 42.752 1024.02816 89.898667 1024.02816 147.797333V637.866667c0 19.370667-17.621333 34.986667-39.381333 34.986666s-39.381333-15.616-39.381334-34.986666V147.797333c0-19.370667-17.749333-34.986667-39.381333-34.986666H118.17216c-21.76 0-39.381333 15.701333-39.381333 34.986666V847.786667c0 19.370667 17.749333 34.986667 39.381333 34.986666h551.381333c21.76 0 39.381333 15.658667 39.381334 35.029334 0 19.370667-17.578667 34.986667-39.381334 34.986666zM39.366827 742.826667a41.429333 41.429333 0 0 1-27.818667-10.282667 32.384 32.384 0 0 1 0-49.578667l196.224-174.250666c35.925333-32 90.709333-39.936 136.234667-19.712l213.674666 94.976a42.581333 42.581333 0 0 0 45.312-6.570667l353.706667-314.453333c15.402667-13.653333 40.405333-13.653333 55.808 0 15.36 13.696 15.36 35.925333 0 49.578666l-353.749333 314.453334c-35.968 31.914667-90.709333 39.893333-136.277334 19.626666L308.806827 551.68a42.581333 42.581333 0 0 0-45.269334 6.570667L67.185493 732.586667a41.429333 41.429333 0 0 1-27.818666 10.24z m275.754666-350.08a105.173333 105.173333 0 0 1-105.045333-105.045334 105.173333 105.173333 0 0 1 105.045333-105.002666 105.173333 105.173333 0 0 1 105.002667 105.002666 105.173333 105.173333 0 0 1-105.002667 105.045334z m0-140.032c-19.285333 0-34.986667 15.744-34.986666 34.986666 0 19.242667 15.701333 34.986667 34.986666 34.986667 19.2 0 34.986667-15.744 34.986667-34.986667 0-19.242667-15.786667-34.986667-34.986667-34.986666z m533.845334 700.16a34.986667 34.986667 0 0 1-34.986667-34.986667v-210.090667a34.986667 34.986667 0 1 1 69.973333 0v210.048a34.986667 34.986667 0 0 1-34.986666 34.986667z m140.032-140.032a34.858667 34.858667 0 0 1-23.936-9.514667l-116.053334-108.970667-116.096 109.056a34.944 34.944 0 1 1-47.914666-50.986666l122.752-115.285334a53.12 53.12 0 0 1 82.474666 0l122.752 115.285334a34.986667 34.986667 0 0 1-23.978666 60.416z"
+                        p-id="2909" fill="#3b82f6"></path>
+                    </svg>
+                  </label>
+                  <input type="file" id="openUpload" :name="one.teaCode" class="hidden" multiple="multiple"
+                    @change="this.uploadSelf($event)" />
+                </h1>
+
+                <div class="-mt-2">
+                  <span class="inline-block h-1 w-40 rounded-full bg-blue-500"></span>
+                  <span class="mx-1 inline-block h-1 w-3 rounded-full bg-blue-500"></span>
+                  <span class="inline-block h-1 w-1 rounded-full bg-blue-500"></span>
+                </div>
+              </div>
 
 
               <div v-for="(b, index) in this.fileList" :key="index">
-                <div class="rounded-sm grid relative z-10 my-2  -mx-4 sm:-mx-0" v-if="b.teaCode == one.teaCode">
-                  <figure><img :src="b.url" /></figure>
+                <div class="rounded-lg grid relative z-10 my-2 -mx-4 sm:-mx-0" v-if="b.teaCode == one.teaCode">
+                  <figure><img :src="b.url" class="rounded-lg" /></figure>
                   <div class="card-body p-0">
                     <div class="card-actions justify-end">
                       <button @click="this.deleteSelfImage(index)"
@@ -400,12 +434,14 @@ export default {
                   </div>
                 </div>
               </div>
+              <div v-if="this.fileList.length==0" class="mt-4 my-32">待上传...</div>
+
+
             </div>
-          </span>
-          <div class="">
-            <label class="btn btn-ghost text-blue-500" @click="this.submitTask()" for="manual">提交预览</label>
-            <label for="manual" class="btn btn-ghost text-blue-500"
-              @click="this.cleanProvideSubject()">关闭</label>
+          </div>
+          <div class="mt-16">
+            <label class="btn btn-primary text-white mr-2" @click="this.submitTask()" for="manual">提交预览</label>
+            <label for="manual" class="btn btn-ghost text-blue-500" @click="this.cleanProvideSubject()">关闭</label>
           </div>
         </div>
       </div>
