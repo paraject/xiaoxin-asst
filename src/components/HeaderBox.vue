@@ -156,7 +156,7 @@ export default {
         <p class="text-gray-700 font-bold mb-3">关于</p>
         <div class="ml-8 font-bold">
           <p class="py-1">由极客学园联合创始人hissin'开发维护，客观题API以及脚本版由极客学园联合创始人YouXam开发维护。</p>
-          <p class="py-1">感谢纾浚 Kwaain YouXam Czz 和所有未本项目提供支持的同学们。</p>
+          <p class="py-1">感谢纾浚 Kwaain YouXam Czz 和所有为本项目提供支持的同学们。</p>
         </div>
       </div>
 
