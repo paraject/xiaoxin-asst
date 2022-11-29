@@ -121,9 +121,10 @@ export default {
     },
     cleanProvideSubject() {
       this.nowSubjectProvider = {};
+      this.choosenSubjectData = {};
     },
-    submitTask(){
-      this.$emit('submitTask',this.fileList,this.choosenSubjectData)
+    submitTask() {
+      this.$emit('submitTask', this.fileList, this.choosenSubjectData)
       //console.log(objectData);
       //console.log(this.fileList);
       //console.log(this.nowSubjectProvider);
@@ -192,7 +193,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="subjectNum>0">
+  <div v-if="subjectNum > 0">
     <div class="bg-green-200  shadow overflow-hidden rounded-lg mt-5 -mb-4">
       <div class="pt-4 pb-8 px-4 md:px-6 text-lg font-bold text-green-700">
         主观题
@@ -278,30 +279,32 @@ export default {
 
       <input type="checkbox" id="openShow" class="modal-toggle" />
       <div class="modal">
-        <div class="modal-box relative w-11/12 max-w-5xl">
-          <label for="openShow" class="btn btn-primary btn-sm btn-circle absolute right-2 top-2 text-white"
+        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white/90 overflow-x-hidden ">
+          <label for="openShow"
+            class="btn btn-ghost btn-sm btn-circle text-blue-600 font-bold absolute md:top-4 md:right-6 sm:text-xl sm:top-4 sm:right-2  top-1 right-1"
             @click="cleanProvideSubject()">✕</label>
-          <label class="btn btn-secondary btn-sm btn-circle absolute right-12 top-2"
+          <label
+            class="btn btn-ghost btn-sm btn-circle  text-blue-600 font-bold absolute md:top-4 md:right-16 sm:text-xl sm:top-4 sm:right-10  top-1 right-8"
             @click="this.randomOther()">↻</label>
-          <h3 class="text-lg font-bold my-3 md:mt-0 mb-4 text-start">
-            {{ this.nowSubjectProvider.className }}-{{
-            this.nowSubjectProvider.realName
-            }}<br>
-            得分:{{ this.nowSubjectProvider.allScore }} · 排名:{{
-            this.nowSubjectProvider.rank
-            }}
-          </h3>
 
-          <span class="my-4" v-for="(one, num) in this.choosenSubjectData" :key="one.teaCode">
+          <div class="items-center p-1 text-teal text-sm leading-5">
+            <p>{{ this.nowSubjectProvider.className }}-{{ this.nowSubjectProvider.realName }}的答案 </p>
+            <p>得分:{{ this.nowSubjectProvider.allScore }}-排名:{{ this.nowSubjectProvider.rank }}
 
-            <label class="btn gap-2 btn-secondary my-2 w-48" for="openUpload"
+            </p>
+
+          </div>
+
+          <div class="mt-1" v-for="(one, num) in this.choosenSubjectData" :key="one.teaCode">
+
+            <label class="btn gap-2 btn-ghost my-1 w-48 font-bold text-base " for="openUpload"
               @click="this.uploadingTeaIndex = one.teaCode">
-              第 {{ one.teaCode }} 题
+              主观 · 第 {{ one.teaCode }} 题
               <svg t="1661591286859" class="icon" viewBox="0 0 1024 1024" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" p-id="2908" width="20" height="20">
                 <path
                   d="M669.553493 952.874667H118.214827C52.934827 952.874667 0.02816 905.728 0.02816 847.786667V147.797333C0.02816 89.770667 53.062827 42.752 118.214827 42.752h787.626666C971.121493 42.752 1024.02816 89.898667 1024.02816 147.797333V637.866667c0 19.370667-17.621333 34.986667-39.381333 34.986666s-39.381333-15.616-39.381334-34.986666V147.797333c0-19.370667-17.749333-34.986667-39.381333-34.986666H118.17216c-21.76 0-39.381333 15.701333-39.381333 34.986666V847.786667c0 19.370667 17.749333 34.986667 39.381333 34.986666h551.381333c21.76 0 39.381333 15.658667 39.381334 35.029334 0 19.370667-17.578667 34.986667-39.381334 34.986666zM39.366827 742.826667a41.429333 41.429333 0 0 1-27.818667-10.282667 32.384 32.384 0 0 1 0-49.578667l196.224-174.250666c35.925333-32 90.709333-39.936 136.234667-19.712l213.674666 94.976a42.581333 42.581333 0 0 0 45.312-6.570667l353.706667-314.453333c15.402667-13.653333 40.405333-13.653333 55.808 0 15.36 13.696 15.36 35.925333 0 49.578666l-353.749333 314.453334c-35.968 31.914667-90.709333 39.893333-136.277334 19.626666L308.806827 551.68a42.581333 42.581333 0 0 0-45.269334 6.570667L67.185493 732.586667a41.429333 41.429333 0 0 1-27.818666 10.24z m275.754666-350.08a105.173333 105.173333 0 0 1-105.045333-105.045334 105.173333 105.173333 0 0 1 105.045333-105.002666 105.173333 105.173333 0 0 1 105.002667 105.002666 105.173333 105.173333 0 0 1-105.002667 105.045334z m0-140.032c-19.285333 0-34.986667 15.744-34.986666 34.986666 0 19.242667 15.701333 34.986667 34.986666 34.986667 19.2 0 34.986667-15.744 34.986667-34.986667 0-19.242667-15.786667-34.986667-34.986667-34.986666z m533.845334 700.16a34.986667 34.986667 0 0 1-34.986667-34.986667v-210.090667a34.986667 34.986667 0 1 1 69.973333 0v210.048a34.986667 34.986667 0 0 1-34.986666 34.986667z m140.032-140.032a34.858667 34.858667 0 0 1-23.936-9.514667l-116.053334-108.970667-116.096 109.056a34.944 34.944 0 1 1-47.914666-50.986666l122.752-115.285334a53.12 53.12 0 0 1 82.474666 0l122.752 115.285334a34.986667 34.986667 0 0 1-23.978666 60.416z"
-                  p-id="2909" fill="#ffffff"></path>
+                  p-id="2909" fill="#333"></path>
               </svg>
             </label>
             <input type="file" id="openUpload" :name="one.teaCode" class="hidden" multiple="multiple"
@@ -310,7 +313,7 @@ export default {
 
 
             <div v-for="(a, index) in one.images" :key="index">
-              <div class="card shadow-md grid relative z-10 my-4">
+              <div class="rounded-sm shadow-md grid relative z-10 my-4  -mx-4 sm:-mx-0">
                 <figure><img :src="a" /></figure>
                 <div class="card-body p-0">
                   <div class="card-actions justify-end">
@@ -328,12 +331,12 @@ export default {
               </div>
             </div>
             <div v-for="(b, index) in this.fileList" :key="index">
-              <div class="card shadow-md grid relative z-10 my-4" v-if="b.teaCode == one.teaCode">
+              <div class="rounded-sm shadow-md grid relative z-10 my-4  -mx-4 sm:-mx-0" v-if="b.teaCode == one.teaCode">
                 <figure><img :src="b.url" /></figure>
                 <div class="card-body p-0">
                   <div class="card-actions justify-end">
                     <button @click="this.deleteSelfImage(index)"
-                      class="-mt-16 mr-4 z-30 block p-3 text-green-700 transition-all stUpdate()bg-green-100 border-2 border-white rounded-full hover:scale-110 focus:outline-none focus:ring active:bg-green-50"
+                      class="-mt-16 mr-4 z-30 block p-3 text-green-700 transition-all bg-green-100 border-2 border-white rounded-full hover:scale-110 focus:outline-none focus:ring active:bg-green-50"
                       type="button">
                       <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -346,12 +349,11 @@ export default {
               </div>
             </div>
 
-          </span>
-          <div class="modal-action mt-16">
-            <label class="btn btn-primary text-white" @click="this.submitTask()" for="openShow">提交预览</label>
-            <label @click="this.randomOther()" class="btn btn-secondary text-white">再来一瓶</label>
-            <label for="openShow" class="btn btn-outline btn-secondary text-white"
-              @click="cleanProvideSubject()">关闭</label>
+          </div>
+          <div class="mt-16">
+            <label class="btn btn-ghost text-blue-500" @click="this.submitTask()" for="openShow">提交预览</label>
+            <label @click="this.randomOther()" class="btn btn-ghost text-blue-500">再来一瓶</label>
+            <label for="openShow" class="btn btn-ghost text-blue-500" @click="cleanProvideSubject()">关闭</label>
           </div>
         </div>
       </div>
@@ -360,19 +362,19 @@ export default {
       <!--手动上传-->
       <input type="checkbox" id="manual" class="modal-toggle" />
       <div class="modal">
-        <div class="modal-box relative w-11/12 max-w-5xl">
-          <label for="manual" class="btn btn-primary btn-sm btn-circle absolute right-2 top-2"
+        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white/90">
+          <label for="manual" class="btn btn-ghost btn-sm btn-circle text-blue-600 font-bold absolute md:top-4 md:right-6 sm:text-xl sm:top-4 sm:right-2  top-1 right-1"
             @click="cleanProvideSubject()">✕</label>
           <span class="my-4" v-for="(one, index) in this.taskData" :key="index">
             <div v-if="one.hasSubjectiveItem == 1" class="flex-col flex">
-              <label class="btn gap-2 btn-secondary my-2 w-48" for="openUpload"
+              <label class="btn gap-2 btn-ghost my-1 w-48 font-bold text-base " for="openUpload"
                 @click="this.uploadingTeaIndex = one.teaCode">
-                第 {{ one.teaCode }} 题
+                主观 · 第 {{ one.teaCode }} 题
                 <svg t="1661591286859" class="icon" viewBox="0 0 1024 1024" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" p-id="2908" width="20" height="20">
                   <path
                     d="M669.553493 952.874667H118.214827C52.934827 952.874667 0.02816 905.728 0.02816 847.786667V147.797333C0.02816 89.770667 53.062827 42.752 118.214827 42.752h787.626666C971.121493 42.752 1024.02816 89.898667 1024.02816 147.797333V637.866667c0 19.370667-17.621333 34.986667-39.381333 34.986666s-39.381333-15.616-39.381334-34.986666V147.797333c0-19.370667-17.749333-34.986667-39.381333-34.986666H118.17216c-21.76 0-39.381333 15.701333-39.381333 34.986666V847.786667c0 19.370667 17.749333 34.986667 39.381333 34.986666h551.381333c21.76 0 39.381333 15.658667 39.381334 35.029334 0 19.370667-17.578667 34.986667-39.381334 34.986666zM39.366827 742.826667a41.429333 41.429333 0 0 1-27.818667-10.282667 32.384 32.384 0 0 1 0-49.578667l196.224-174.250666c35.925333-32 90.709333-39.936 136.234667-19.712l213.674666 94.976a42.581333 42.581333 0 0 0 45.312-6.570667l353.706667-314.453333c15.402667-13.653333 40.405333-13.653333 55.808 0 15.36 13.696 15.36 35.925333 0 49.578666l-353.749333 314.453334c-35.968 31.914667-90.709333 39.893333-136.277334 19.626666L308.806827 551.68a42.581333 42.581333 0 0 0-45.269334 6.570667L67.185493 732.586667a41.429333 41.429333 0 0 1-27.818666 10.24z m275.754666-350.08a105.173333 105.173333 0 0 1-105.045333-105.045334 105.173333 105.173333 0 0 1 105.045333-105.002666 105.173333 105.173333 0 0 1 105.002667 105.002666 105.173333 105.173333 0 0 1-105.002667 105.045334z m0-140.032c-19.285333 0-34.986667 15.744-34.986666 34.986666 0 19.242667 15.701333 34.986667 34.986666 34.986667 19.2 0 34.986667-15.744 34.986667-34.986667 0-19.242667-15.786667-34.986667-34.986667-34.986666z m533.845334 700.16a34.986667 34.986667 0 0 1-34.986667-34.986667v-210.090667a34.986667 34.986667 0 1 1 69.973333 0v210.048a34.986667 34.986667 0 0 1-34.986666 34.986667z m140.032-140.032a34.858667 34.858667 0 0 1-23.936-9.514667l-116.053334-108.970667-116.096 109.056a34.944 34.944 0 1 1-47.914666-50.986666l122.752-115.285334a53.12 53.12 0 0 1 82.474666 0l122.752 115.285334a34.986667 34.986667 0 0 1-23.978666 60.416z"
-                    p-id="2909" fill="#ffffff"></path>
+                    p-id="2909" fill="#333333"></path>
                 </svg>
               </label>
               <input type="file" id="openUpload" :name="one.teaCode" class="hidden" multiple="multiple"
@@ -380,7 +382,7 @@ export default {
 
 
               <div v-for="(b, index) in this.fileList" :key="index">
-                <div class="card shadow-md grid relative z-10 my-2" v-if="b.teaCode == one.teaCode">
+                <div class="rounded-sm grid relative z-10 my-2  -mx-4 sm:-mx-0" v-if="b.teaCode == one.teaCode">
                   <figure><img :src="b.url" /></figure>
                   <div class="card-body p-0">
                     <div class="card-actions justify-end">
@@ -399,9 +401,9 @@ export default {
               </div>
             </div>
           </span>
-          <div class="modal-action">
-            <label class="btn btn-primary text-white" @click="this.submitTask()" for="manual">提交预览</label>
-            <label for="manual" class="btn btn-outline btn-secondary text-white"
+          <div class="">
+            <label class="btn btn-ghost text-blue-500" @click="this.submitTask()" for="manual">提交预览</label>
+            <label for="manual" class="btn btn-ghost text-blue-500"
               @click="this.cleanProvideSubject()">关闭</label>
           </div>
         </div>

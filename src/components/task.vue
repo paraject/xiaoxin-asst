@@ -17,7 +17,9 @@ export default {
       subjectSelf: {},
       subjectOther: {},
       objectData: {},
+      submitMsg: '',
       preview: false,
+      success: false,
       finalObjective: [],
       finalSubjective: [],
     }
@@ -118,8 +120,8 @@ export default {
       ).then(res => {
         if (res.state == 'ok') {
           fetch(`https://service-cz1sw5t1-1301539318.bj.apigw.tencentcs.com/release/?userrole=${this.userInfo.userRole}&schoolid=${this.userInfo.schoolId}&sid=${this.taskInfo.taskId}&token=${this.userInfo.token}&userid=${this.userInfo.userId}&username=${this.userInfo.realName}&schoolname=${this.userInfo.schoolName}&type=submit`)
-          alert(res.msg);
-          this.backhome();
+          this.submitMsg = res.msg;
+          this.success = true;
         }
       }).catch(err => {
         console.log(err);
@@ -231,7 +233,7 @@ export default {
 
     <div class="px-2 md:px-16 mb-4 pt-4">
 
-      <button class=" mr-2  bg-gray-200 rounded-full p-2" @click="backhome()">
+      <button class=" mr-2  bg-white rounded-full p-2 hover:bg-gray-200" @click="backhome()">
         <svg t="1669622375669" class="icon w-4 h-4" viewBox="0 0 1024 1024" version="1.1"
           xmlns="http://www.w3.org/2000/svg" p-id="5305" width="32" height="32">
           <path
@@ -242,13 +244,13 @@ export default {
         {{ taskInfo.taskName }}</span>
 
       <div class="badge badge-secondary px-2.5 py-0.5 font-bold text-white" v-if="taskInfo.submitCode == 0">{{
-          submitStatus
+      submitStatus
       }}</div>
       <div class="badge badge-primary text-white px-2.5 py-0.5 font-bold" v-if="taskInfo.submitCode == 1">{{
-          submitStatus
+      submitStatus
       }}</div>
       <div class="badge badge-secondary badge-outline px-2.5 py-0.5 font-bold" v-if="taskInfo.submitCode == 2">{{
-          submitStatus
+      submitStatus
       }}</div>
 
       <objective :taskInfo="taskInfo" :userInfo="userInfo" :taskData="taskData" :objectNum="objectNum"
@@ -263,20 +265,31 @@ export default {
 
     <input type="checkbox" id="my-modal-3" class="modal-toggle" v-model="preview" />
     <div class="modal">
-      <div class="modal-box relative w-11/12 max-w-5xl overflow-x-hidden">
-        <label for="my-modal-3" class="btn btn-sm btn-primary btn-circle absolute right-2 top-2 text-white ">✕</label>
-        <h3 class="text-lg font-bold">核对您的作业提交数据</h3>
-        <h3 class="text-base text-red-600 font-bold">这将是您的最终上传数据，请仔细核对，提交后不可更改，请不要一时脑热！</h3>
+      <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white/90 overflow-x-hidden">
+        <h3 class="text-xl font-bold mt-4">仅差一步，请核对您的作业提交数据</h3>
 
-        <p class="py-4 text-lg text-blue-500 font-bold">选择题</p>
-        <div v-if="objectNum == 0" class="">该作业没有选择题</div>
+        <div class="flex bg-red-100 rounded-lg p-4 my-4 text-sm text-red-700 md:ml-5" role="alert">
+
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="-ml-1 mr-1.5 w-5 h-5 inline">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+          <div>
+            <p class="font-bold">注意!</p>
+            <p class="font-medium">这将是您的最终上传数据，请仔细核对，提交后不可更改，请不要一时脑热！</p>
+          </div>
+        </div>
+
+        <p class="mb-4 text-lg font-bold md:ml-5">· 选择题</p>
+        <div v-if="objectNum == 0" class="md:ml-5">该作业没有选择题</div>
         <div>
-          <span class="badge badge-secondary mr-1 p-4 text-lg font-bold text-white my-1 uppercase"
+          <span class="badge badge-secondary mr-1 p-4 text-lg font-bold text-white my-1 uppercase md:ml-5"
             v-for="(obj, index) in objectData" :key="index">{{ obj }}</span>
         </div>
 
-        <p class="py-4 text-lg text-blue-500 font-bold">主观题</p>
-        <div v-if="subjectNum == 0" class="mb-5">该作业没有主观题</div>
+        <p class="py-4 text-lg  font-bold md:ml-5">· 主观题</p>
+        <div v-if="subjectNum == 0" class="mb-5 md:ml-5">该作业没有主观题</div>
         <div v-for="(sub, index) in subjectSelf" :key="index">
           <img :src="sub.url" class="my-2 rounded-xl">
         </div>
@@ -286,11 +299,73 @@ export default {
 
           </div>
         </div>
+        <label class="btn btn-secondary mr-3" for="my-modal-3">取消</label>
 
-        <button class="btn btn-accent mr-3" @click="submitTask()">确认提交,提交后不可更改</button>
-        <label class="btn" for="my-modal-3">取消</label>
+        <button class="btn btn-accent" @click="submitTask()" for="my-modal-3">确认提交,提交后不可更改</button>
+      </div>
+    </div>
 
 
+    <input type="checkbox" id="success-submit" class="modal-toggle" v-model="success" />
+    <div class="modal">
+      <div class="modal-box relative w-full max-w-full bg-white/0 overflow-x-hidden">
+
+
+
+
+        <div class="flex flex-col justify-center items-center">
+          <div class="md:w-2/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
+            <div class="flex justify-between border-b border-gray-100 px-5 py-4">
+              <div class="flex">
+                <svg t="1669692725632" class="icon w-8 h-8" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="4340" width="128" height="128">
+                  <path d="M512 512m-448 0a448 448 0 1 0 896 0 448 448 0 1 0-896 0Z" fill="#07C160" p-id="4341"></path>
+                  <path
+                    d="M466.7 679.8c-8.5 0-16.6-3.4-22.6-9.4l-181-181.1c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l158.4 158.5 249-249c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L489.3 670.4c-6 6-14.1 9.4-22.6 9.4z"
+                    fill="#FFFFFF" p-id="4342"></path>
+                </svg>
+
+                <span class="font-bold text-gray-700 text-xl ml-2 mt-1">提交成功</span>
+              </div>
+              <div>
+                <button><i
+                    class="fa fa-times-circle text-red-500 hover:text-red-600 transition duration-150"></i></button>
+              </div>
+            </div>
+
+            <div class="px-10 py-5 text-gray-600 font-bold leading-6">
+              小鑫助手极大的方便了同学们的假期生活，但开发和维护项目都需要成本，希望有能力的同学可以支持赞助，您的支持就是我们前进的动力。
+              <div class="sm:flex">
+                <div class="mt-2">
+                  <img src="../assert/reward.png" class="w-20 rounded-md shrink-0 ring-4 ring-green-200">
+                </div>
+                <div class="w-48 sm:ml-4 sm:mt-1 mt-2">
+                  <a class="text-lg" href="https://jq.qq.com/?_wv=1027&k=FLpEj4b8">
+                    <span class="badge badge-primary badge-outline">
+                     QQ一群:756016909
+                    </span>
+                  </a>
+                  <a class="text-lg mt-3" href="https://jq.qq.com/?_wv=1027&k=cPvj2Vft">
+                    <span class="badge badge-primary badge-outline">
+                      QQ二群:745731575
+                    </span>
+                  </a>
+                  <a class="text-lg mt-3"
+                    href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,mQvtrGj2v7QyElRcjOGFciRHyuduanL5u+OlefppD64=&_dt_no_comment=1&origin=11">
+                    <span class="badge badge-primary badge-outline">
+                      钉钉群:31846657
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-5 py-4 flex justify-end">
+              <button @click="backhome()"
+                class="bg-green-500 mr-1 rounded text-sm py-2 px-3 text-white hover:bg-green-600 transition duration-150">回到主页</button>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
