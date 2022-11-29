@@ -271,7 +271,7 @@ export default {
 
     <input type="checkbox" id="my-modal-3" class="modal-toggle" v-model="preview" />
     <div class="modal">
-      <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-gray-200/90 overflow-x-hidden">
+      <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white overflow-x-hidden">
         <h3 class="text-xl font-bold mt-4">仅差一步，请核对您的作业提交数据</h3>
 
         <div class="flex bg-red-100 rounded-lg p-4 my-4 text-sm text-red-700 md:ml-5" role="alert">
@@ -305,9 +305,8 @@ export default {
 
           </div>
         </div>
-        <label class="btn btn-secondary mr-3" for="my-modal-3">取消</label>
-
-        <button class="btn btn-accent" @click="submitTask()" for="my-modal-3">确认提交,提交后不可更改</button>
+        <button class="btn btn-accent mr-3" @click="submitTask()" for="my-modal-3">确认提交,提交后不可更改</button>
+        <label class="btn btn-secondary mt-5" for="my-modal-3">取消</label>
       </div>
     </div>
 

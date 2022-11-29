@@ -30,11 +30,11 @@ export default {
 </script>
 <template>
   <!--头部开始-->
-  <div class="md:px-10 md:mx-0 -mx-4 border-b-2">
-    <div class="navbar bg-base-100">
+  <div class="md:px-10 md:mx-0 bg-gray-100">
+    <div class="navbar bg-gray-100">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl" @click="backhome()">
-          <img src="../assert/logo.png" class="h-8 mr-2 rounded-lg"><span class=" text-gray-900">小鑫助手</span>
+        <a class="btn btn-ghost normal-case text-xl px-0" @click="backhome()">
+          <img src="../assert/logo.png" class="h-8 mr-2 rounded-lg text-base"><span class=" text-gray-900">小鑫助手<span class="text-sm ml-0.5">V1.8.4🎉</span></span>
         </a>
 
 
@@ -89,7 +89,7 @@ export default {
                 学校
                 <span class="badge badge-secondary">{{ schoolName }}</span>
               </a></li>
-            <li @click="logout()"><a>退出</a></li>
+            <li @click="logout()" class="font-bold"><a>退出<svg t="1669727543192" class="icon w-4 h-4" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3600" width="32" height="32"><path d="M948.7 492.6L811.5 321.2c-5.7-5.7-17.1-11.4-28.6-11.4h-11.4c-11.4 5.7-22.9 17.1-22.9 34.3V447H474.2c-40 0-68.6 28.6-68.6 68.6s28.6 68.6 68.6 68.6h274.4V687c0 17.1 11.4 28.6 22.9 34.3h11.4c11.4 0 22.9-5.7 28.6-11.4l137.2-171.5c5.7-11.5 5.7-28.6 0-45.8zM611.4 789.9H337c-40 0-68.6-28.6-68.6-68.6V304c0-40 28.6-68.6 68.6-68.6h274.4c40 0 68.6-28.6 68.6-68.6s-28.6-68.6-68.6-68.6h-343c-74.3 0-137.2 62.9-137.2 137.2v554.5c0 74.3 62.9 137.2 137.2 137.2h343c40 0 68.6-28.6 68.6-68.6 0-34.3-34.3-68.6-68.6-68.6z" fill="#333333" p-id="3601"></path></svg></a></li>
           </ul>
         </div>
       </div>
@@ -97,9 +97,12 @@ export default {
   </div>
 
   <div id="about" class="modal cursor-pointer ">
-    <div class="modal-box relative overflow-x-hidden max-w-full w-full max-h-full h-5/6 bg-gray-200/90 rounded-none md:px-16 leading-relaxed ">
+    <div
+      class="modal-box relative overflow-x-hidden max-w-full w-full max-h-full h-full bg-white rounded-none py-1 sm:px-24 lg:px-36 sm:py-3 lg:py-8 leading-relaxed ">
 
-      <p class="font-bold text-2xl">小鑫助手·焕然一新 V1.8.3</p>
+      <a href="#" class="btn btn-ghost text-gray-900 text-3xl mb-3 px-0 py-0">⇽</a>
+
+      <p class="font-bold text-2xl">小鑫助手·焕然一新 V1.8.4</p>
 
       <div class="mt-4">
         <p class="text-gray-700 font-bold mb-3">交流/通知</p>
@@ -141,13 +144,13 @@ export default {
         <p class="text-gray-700 font-bold mb-3">赞助</p>
 
         <p class="py-1 text-blue-500 font-bold ml-8">小鑫助手极大的方便了同学们的假期生活。<br>
-                    但为了给同学们提供更稳定的服务，<br>
-                    开发者会有一笔不小的支出，<br>
-                    所以希望有能力的同学可以支持赞助，<br>
-                    一是给我以继续维护此项目的动力，<br>
-                    也是能够用来支付使用更稳定的云服务商的费用。<br>
-                    您的一块两块就能给我带来快乐的一天，<br>
-                    足够让我觉得无数个不眠的代码之夜没有白费。<br></p>
+          但为了给同学们提供更稳定的服务，<br>
+          开发者会有一笔不小的支出，<br>
+          所以希望有能力的同学可以支持赞助，<br>
+          一是给我以继续维护此项目的动力，<br>
+          也是能够用来支付使用更稳定的云服务商的费用。<br>
+          您的一块两块就能给我带来快乐的一天，<br>
+          足够让我觉得无数个不眠的代码之夜没有白费。<br></p>
         <div class="ml-8">
           <img src="../assert/reward.png" class="w-20 rounded-md shrink-0 ring-4 ring-blue-200">
         </div>
@@ -156,12 +159,8 @@ export default {
         <p class="text-gray-700 font-bold mb-3">关于</p>
         <div class="ml-8 font-bold">
           <p class="py-1">由极客学园联合创始人hissin'开发维护，客观题API以及脚本版由极客学园联合创始人YouXam开发维护。</p>
-          <p class="py-1">感谢纾浚 Kwaain YouXam Czz 和所有未本项目提供支持的同学们。</p>
+          <p class="py-1">感谢纾浚 Kwaain YouXam Czz 和所有为本项目提供支持的同学们。</p>
         </div>
-      </div>
-
-      <div class="modal-action">
-        <a href="#" class="btn btn-secondary text-white rounded-xl">阅</a>
       </div>
 
     </div>
