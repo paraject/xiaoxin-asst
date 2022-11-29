@@ -121,7 +121,8 @@ export default {
     },
     cleanProvideSubject() {
       this.nowSubjectProvider = {};
-      this.choosenSubjectData = {};
+      this.choosenSubjectData = [];
+      //pre:this.choosenSubjectData = {};以后不要瞎赋类型！！！
     },
     submitTask() {
       this.$emit('submitTask', this.fileList, this.choosenSubjectData)
@@ -279,7 +280,7 @@ export default {
 
       <input type="checkbox" id="openShow" class="modal-toggle" />
       <div class="modal">
-        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white/90 overflow-x-hidden ">
+        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-gray-200/90 overflow-x-hidden ">
           <label for="openShow"
             class="btn btn-ghost btn-sm btn-circle text-blue-600 font-bold absolute md:top-4 md:right-6 sm:text-xl sm:top-4 sm:right-2  top-1 right-1"
             @click="cleanProvideSubject()">✕</label>
@@ -362,7 +363,7 @@ export default {
       <!--手动上传-->
       <input type="checkbox" id="manual" class="modal-toggle" />
       <div class="modal">
-        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white/90">
+        <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-gray-200/90">
           <label for="manual" class="btn btn-ghost btn-sm btn-circle text-blue-600 font-bold absolute md:top-4 md:right-6 sm:text-xl sm:top-4 sm:right-2  top-1 right-1"
             @click="cleanProvideSubject()">✕</label>
           <span class="my-4" v-for="(one, index) in this.taskData" :key="index">

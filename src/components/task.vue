@@ -14,8 +14,8 @@ export default {
       taskData: {},
       objectNum: 0,
       subjectNum: 0,
-      subjectSelf: {},
-      subjectOther: {},
+      subjectSelf: [],
+      subjectOther: [],
       objectData: {},
       submitMsg: '',
       preview: false,
@@ -36,6 +36,9 @@ export default {
 
     },
     preSubmitTask(subjectSelf, subjectOther) {
+
+      //console.log(subjectSelf);
+      //console.log(subjectOther);
 
       this.subjectSelf = subjectSelf;
       this.subjectOther = subjectOther;
@@ -61,8 +64,8 @@ export default {
       }*/
 
 
-      if (subjectOther.length == 0) {
-        console.log(2)
+      if (subjectOther.length==0) {
+        console.log(1)
         this.taskData.forEach((one) => {
           if (one.hasSubjectiveItem == 1) {
             let oneTea = [];
@@ -77,20 +80,21 @@ export default {
         })
       }
       else {
-        subjectOther.forEach((subject) => {
-          let oneTea = [];
-          subject.images.forEach((image) => {
-            oneTea.push(`${subject.teaId},${image}`)
+          subjectOther.forEach((subject) => {
+            let oneTea = [];
+            subject.images.forEach((image) => {
+              oneTea.push(`${subject.teaId},${image}`)
+            })
+
+            subjectSelf.forEach((own) => {
+              if (own.teaCode == subject.teaCode) {
+                oneTea.push(`${subject.teaId},${own.url}`)
+              }
+            })
+
+            subjective.push(oneTea.join(';'))
           })
 
-          subjectSelf.forEach((own) => {
-            if (own.teaCode == subject.teaCode) {
-              oneTea.push(`${subject.teaId},${own.url}`)
-            }
-          })
-
-          subjective.push(oneTea.join(';'))
-        })
       }
 
 
@@ -122,7 +126,7 @@ export default {
         if (res.state == 'ok') {
           this.success = true;
         }
-        else{
+        else {
           alert(res.msg)
         }
       }).catch(err => {
@@ -246,13 +250,13 @@ export default {
         {{ taskInfo.taskName }}</span>
 
       <div class="badge badge-secondary px-2.5 py-0.5 font-bold text-white" v-if="taskInfo.submitCode == 0">{{
-      submitStatus
+          submitStatus
       }}</div>
       <div class="badge badge-primary text-white px-2.5 py-0.5 font-bold" v-if="taskInfo.submitCode == 1">{{
-      submitStatus
+          submitStatus
       }}</div>
       <div class="badge badge-secondary badge-outline px-2.5 py-0.5 font-bold" v-if="taskInfo.submitCode == 2">{{
-      submitStatus
+          submitStatus
       }}</div>
 
       <objective :taskInfo="taskInfo" :userInfo="userInfo" :taskData="taskData" :objectNum="objectNum"
@@ -267,7 +271,7 @@ export default {
 
     <input type="checkbox" id="my-modal-3" class="modal-toggle" v-model="preview" />
     <div class="modal">
-      <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-white/90 overflow-x-hidden">
+      <div class="modal-box relative w-full max-w-full rounded-none max-h-full h-full bg-gray-200/90 overflow-x-hidden">
         <h3 class="text-xl font-bold mt-4">仅差一步，请核对您的作业提交数据</h3>
 
         <div class="flex bg-red-100 rounded-lg p-4 my-4 text-sm text-red-700 md:ml-5" role="alert">
@@ -340,7 +344,7 @@ export default {
                 <div class="w-48 sm:ml-4 sm:mt-1 mt-2">
                   <a class="text-lg" href="https://jq.qq.com/?_wv=1027&k=FLpEj4b8">
                     <span class="badge badge-primary badge-outline">
-                     QQ一群:756016909
+                      QQ一群:756016909
                     </span>
                   </a>
                   <a class="text-lg mt-3" href="https://jq.qq.com/?_wv=1027&k=cPvj2Vft">
