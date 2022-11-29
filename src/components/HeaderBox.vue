@@ -97,9 +97,9 @@ export default {
   </div>
 
   <div id="about" class="modal cursor-pointer ">
-    <div class="modal-box relative overflow-x-hidden max-w-6xl leading-relaxed ">
+    <div class="modal-box relative overflow-x-hidden max-w-full w-full max-h-full h-5/6 bg-white/90 rounded-none md:px-16 leading-relaxed ">
 
-      <p class="text-blue-500 font-bold text-2xl">小鑫助手·焕然一新 V1.8.1</p>
+      <p class="font-bold text-2xl">小鑫助手·焕然一新 V1.8.1</p>
 
       <div class="mt-4">
         <p class="text-gray-700 font-bold mb-3">交流/通知</p>
@@ -154,9 +154,9 @@ export default {
       </div>
       <div class="mt-4">
         <p class="text-gray-700 font-bold mb-3">关于</p>
-        <div class="ml-8 text-blue-500 font-bold">
+        <div class="ml-8 font-bold">
           <p class="py-1">由极客学园联合创始人hissin'开发维护，客观题API以及脚本版由极客学园联合创始人YouXam开发维护。</p>
-          <p class="py-1">感谢纾浚 半糖茶 YouXam Czz 和所有未本项目提供支持的同学们。</p>
+          <p class="py-1">感谢纾浚 Kwaain YouXam Czz 和所有未本项目提供支持的同学们。</p>
         </div>
       </div>
 
