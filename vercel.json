@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/intl/api/:match*",
+      "destination": "https://zuoyenew.xinkaoyun.com:30001/holidaywork/:match*"
+    },
+    {
+      "source": "/ext/api/:match*",
+      "destination": "https://service-opugde4o-1301539318.hk.apigw.tencentcs.com/release/:match*"
+    }
+  ]
+}
