@@ -54,7 +54,7 @@ export default {
       if (this.taskData[0].children) {
         let child = this.taskData[0].children;
         for (let i = 0; i < child.length; i++) {
-          objective.push(`${child[i].teaChildId},${this.objectData[i].toUpperCase()}`)
+          objective.push(`${child[i].teaId}-${child[i].teaChildId},${this.objectData[i].toUpperCase()}`)
         }
 
       }
