@@ -11,8 +11,8 @@
               class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl"
               >服务不可用</h1
             >
-            <p class="mt-1 text-base text-gray-500"
-              >我们都希望有幻想乡般的假期。</p
+            <p class="mt-2 text-base text-gray-500"
+              >我们都希望有幻想乡般的假期。<br /><i>你点一下追问。</i></p
             >
           </div>
           <div
