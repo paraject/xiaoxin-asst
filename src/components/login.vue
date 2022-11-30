@@ -119,7 +119,7 @@ export default {
                 </div>
               </div>
               <div>
-                <button @click="login()" class="m-2 w-full flex justify-center bg-gradient-to-r from-blue-500 to-purple-500 bg-[length:200%] bg-center hover:bg-right text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition-all ease-linear duration-300 border-solid hover:border-blue-500 border-2 border-transparent hover:shadow-2xl">登录以继续</button>
+                <button @click="login()" class="w-full flex justify-center bg-gradient-to-r from-blue-500 to-purple-500 bg-[length:200%] bg-center hover:bg-right text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition-all ease-linear duration-300 border-solid hover:border-blue-500 border-2 border-transparent hover:shadow-xl">登录以继续</button>
               </div>
               <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
                 <span><a href="https://temp.geekpara.com/" class="text-blue-500 font-bold hover:text-blue-700 no-underline hover:underline cursor-pointer transition ease-in duration-300">推荐使用体温助手</a></span>
