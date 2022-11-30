@@ -7,14 +7,14 @@ module.exports = (req, res) => {
   }
   if (req.url.startsWith('/ext/api')) {
     target =
-      'https://service-opugde4o-1301539318.hk.apigw.tencentcs.com/release'; //这里就是在vite中配置的一样
+      'https://service-opugde4o-1301539318.hk.apigw.tencentcs.com/release';
   }
   createProxyMiddleware({
     target,
     changeOrigin: true,
     pathRewrite: {
-      '^/intl/api/': '',
-      '^/ext/api/': '/',
+      '^/intl\/api/': '',
+      '^/ext\/api/': '/',
     },
   })(req, res);
 };
