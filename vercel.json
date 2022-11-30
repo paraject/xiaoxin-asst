@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/intl/api/(.*)",
-      "destination": "/api/proxy"
+      "destination": "src/api/proxy"
     },
     {
       "source": "/ext/api/(.*)",
-      "destination": "/api/proxy"
+      "destination": "src/api/proxy"
     }
   ]
  }
