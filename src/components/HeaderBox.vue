@@ -27,8 +27,8 @@ export default {
   <div class="md:px-10 md:mx-0 bg-gray-100">
     <div class="navbar bg-gray-100">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl px-2" @click="backhome()">
-          <img src="../assert/logo.png" class="h-8 mr-2 rounded-lg text-base" /><span class="text-gray-900 flex items-center">小鑫助手<span class="text-sm ml-0.5">V1.8.4🎉</span></span>
+        <a class="btn btn-ghost normal-case text-xl px-0" @click="backhome()">
+          <img src="../assert/logo.png" class="h-8 mr-2 rounded-lg text-base"><span class=" text-gray-900">小鑫助手<span class="text-sm ml-0.5">V1.8.5🎉</span></span>
         </a>
       </div>
       <div class="flex-none">
@@ -89,7 +89,7 @@ export default {
     <div class="modal-box relative overflow-x-hidden max-w-full w-full max-h-full h-full bg-white rounded-none py-1 sm:px-24 lg:px-36 sm:py-3 lg:py-8 leading-relaxed">
       <a href="#" class="btn btn-ghost text-gray-900 text-3xl mb-3 px-0 py-0">⇽</a>
 
-      <p class="font-bold text-2xl">小鑫助手·焕然一新 V1.8.4</p>
+      <p class="font-bold text-2xl">小鑫助手·焕然一新 V1.8.5</p>
 
       <div class="mt-4">
         <p class="text-gray-700 font-bold mb-3">交流/通知</p>
