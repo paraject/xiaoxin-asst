@@ -13,19 +13,19 @@ const router = createRouter({
     {
       path: '/login',
       redirect: '/login/identifier',
-      meta: { isLoginView: true },
+      meta: { isLoginView: true, keepAlive: false },
       children: [
         {
           path: 'identifier',
           name: 'login-identifier',
           component: LoginIdentifierView,
-          meta: { isLoginView: true },
+          meta: { isLoginView: true, keepAlive: false },
         },
         {
           path: 'challenge',
           name: 'login-challenge',
           component: LoginChallengeView,
-          meta: { isLoginView: true },
+          meta: { isLoginView: true, keepAlive: false },
         },
       ],
     },
@@ -33,20 +33,19 @@ const router = createRouter({
     // 主页
     {
       path: '/',
-      redirect: '/today',
+      redirect: '/tasks',
     },
     {
       path: '/today',
       name: 'today',
       component: TodayView,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true, keepAlive: true },
     },
-    // 作业页
     {
       path: '/tasks',
       name: 'tasks',
       component: TasksView,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true, keepAlive: true },
     },
 
     // 404 Not Found
