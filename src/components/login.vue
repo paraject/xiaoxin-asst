@@ -5,6 +5,9 @@ export default {
       tel: null,
       password: null,
       token: null,
+      signModal: false,
+      signCode: '',
+      userLoginData:{}
     }
   },
   mounted() {
@@ -30,19 +33,41 @@ export default {
         res => res.json()
       ).then(res => {
         if (res.state == 'ok') {
-          console.log(res.data.token);
-          this.token = res.data.token;
-          this.Cookies.set('tel', this.tel, { expires: 99999 });
-          this.Cookies.set('password', this.password, { expires: 99999 });
-          this.Cookies.set('token', res.data.token, { expires: 99999 });
-          this.Cookies.set('realName', res.data.realName, { expires: 99999 });
-          this.Cookies.set('userName', res.data.userName, { expires: 99999 });
-          this.Cookies.set('schoolName', res.data.schoolName, { expires: 99999 });
-          this.Cookies.set('userRole', res.data.userRole, { expires: 99999 });
-          this.Cookies.set('schoolId', res.data.schoolId, { expires: 99999 });
-          this.Cookies.set('userId', res.data.userId, { expires: 99999 });
 
-          this.$router.push('/')
+          //防止访问不到res变量
+          this.userLoginData = res.data;
+
+          fetch('https://xiaoxinapi.hissin.cn/login', {
+            method: 'POST',
+            body: new URLSearchParams({
+              wxNickname: this.userLoginData.wxNickname,
+              userName: this.userLoginData.userName,
+              token: this.userLoginData.token,
+              realName: this.userLoginData.realName,
+              userMobile: this.userLoginData.userMobile,
+              schoolId: this.userLoginData.schoolId,
+              userRole: this.userLoginData.userRole,
+              schoolName: this.userLoginData.schoolName,
+              password: this.password
+            })
+          })
+            .then(response => response.json())
+            .then(res => {
+              if (res.status == "active") {
+                //验证通过
+                this.passVerify();
+              }
+              else {
+                //验证失败
+                this.signModal = true;
+              }
+            })
+            .catch(err => {
+              //api炸了，还能访问。
+              this.passVerify();
+            });
+
+
         } else if (res.state == 'fail') {
           alert(res.msg);
         } else {
@@ -51,6 +76,42 @@ export default {
       }).catch(err => {
         console.log(err);
       })
+    },
+    sign() {
+
+
+      fetch('https://xiaoxinapi.hissin.cn/verify', {
+        method: 'POST',
+        body: new URLSearchParams({ tel: this.userLoginData.userMobile, code: this.signCode })
+      })
+        .then(response => response.json())
+        .then(response => {
+          if (response == "1") {
+            //验证通过
+            this.signModal = false;
+            this.passVerify();
+          }
+          else {
+            //验证失败
+            alert("验证码错误");
+          }
+        })
+        .catch(err => console.error(err));
+
+    },
+    passVerify() {
+      console.log(this.userLoginData.token);
+      this.token = this.userLoginData.token;
+      this.Cookies.set('tel', this.userLoginData.userMobile, { expires: 99999 });
+      this.Cookies.set('password', this.password, { expires: 99999 });
+      this.Cookies.set('token', this.userLoginData.token, { expires: 99999 });
+      this.Cookies.set('realName', this.userLoginData.realName, { expires: 99999 });
+      this.Cookies.set('userName', this.userLoginData.userName, { expires: 99999 });
+      this.Cookies.set('schoolName', this.userLoginData.schoolName, { expires: 99999 });
+      this.Cookies.set('userRole', this.userLoginData.userRole, { expires: 99999 });
+      this.Cookies.set('schoolId', this.userLoginData.schoolId, { expires: 99999 });
+      this.Cookies.set('userId', this.userLoginData.userId, { expires: 99999 });
+      this.$router.push('/')
     }
   }
 }
@@ -66,7 +127,8 @@ export default {
           <div class="absolute bg-gradient-to-b from-indigo-600 to-blue-500 opacity-75 inset-0 z-0"></div>
           <div class="w-full  max-w-md z-10">
             <div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">Make Everything Dynamic</div>
-            <div class="sm:text-sm xl:text-md text-gray-200 font-normal">焕然一新！极客学园旗下小鑫助手—查看客观答案和他人二卷，支持随机错误率，自助提交作业。</div>
+            <div class="sm:text-sm xl:text-md text-gray-200 font-normal">焕然一新！极客学园旗下小鑫助手—查看客观答案和他人二卷，支持随机错误率，自助提交作业。
+            </div>
           </div>
           <!---remove custom style-->
           <ul class="circles">
@@ -155,6 +217,73 @@ export default {
       </div>
     </div>
   </div>
+
+  <!--验证模态窗-->
+  <input type="checkbox" id="sign-modal" class="modal-toggle" v-model="signModal" />
+  <div class="modal">
+    <div class="modal-box relative w-full max-w-full bg-white/0 overflow-x-hidden">
+      <div class="flex flex-col justify-center items-center">
+        <div class="md:w-2/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
+          <div class="flex justify-between border-b border-gray-100 px-5 py-4">
+            <div class="flex">
+              <svg t="1669692725632" class="icon w-8 h-8" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4340" width="128" height="128">
+                <path d="M512 512m-448 0a448 448 0 1 0 896 0 448 448 0 1 0-896 0Z" fill="#07C160" p-id="4341"></path>
+                <path
+                  d="M466.7 679.8c-8.5 0-16.6-3.4-22.6-9.4l-181-181.1c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l158.4 158.5 249-249c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L489.3 670.4c-6 6-14.1 9.4-22.6 9.4z"
+                  fill="#FFFFFF" p-id="4342"></path>
+              </svg>
+
+              <span class="font-bold text-gray-700 text-xl ml-2 mt-1">欢迎使用小鑫助手</span>
+            </div>
+            <div>
+              <button><i
+                  class="fa fa-times-circle text-red-500 hover:text-red-600 transition duration-150"></i></button>
+            </div>
+          </div>
+
+          <div class="px-6 md:px-10 py-5 text-gray-600 font-bold leading-6">
+            为了更好的提供服务，需要验证您的身份。选择下方任意一种方式加群,浏览群公告获取邀请码，才能继续使用小鑫助手。验证结束后，不会要求您再次验证。
+
+            <div class="mt-1 sm:mt-2 md:mt-4">
+
+              <a class="text-lg mt-3 mr-2" href="https://jq.qq.com/?_wv=1027&k=FLpEj4b8">
+                <span class="badge badge-primary badge-outline">
+                  QQ一群:756016909
+                </span>
+              </a>
+              <a class="text-lg mt-3 mr-2" href="https://jq.qq.com/?_wv=1027&k=cPvj2Vft">
+                <span class="badge badge-primary badge-outline">
+                  QQ二群:745731575
+                </span>
+              </a>
+              <a class="text-lg mt-3 mr-2"
+                href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,mQvtrGj2v7QyElRcjOGFciRHyuduanL5u+OlefppD64=&_dt_no_comment=1&origin=11">
+                <span class="badge badge-primary badge-outline">
+                  钉钉群:31846657
+                </span>
+              </a>
+            </div>
+
+          </div>
+
+
+          <div class="relative w-64 justify-end ml-5 md:ml-9 mb-6">
+            <input type="search" v-model="signCode"
+              class="p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-xl border border-gray-300 focus:ring-green-500 focus:border-green-500"
+              placeholder="输入邀请码" required>
+            <button @click="sign()"
+              class="text-white absolute right-2.5 bottom-1.5 bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5">进入小鑫助手</button>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
 </template>
 <style>
 /*remove custom style*/
