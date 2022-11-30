@@ -1,13 +1,12 @@
 {
   "rewrites": [
-    { "source": "/:path*", "destination": "/index.html" },
     {
-      "source": "/intl/api/:match*",
-      "destination": "https://zuoyenew.xinkaoyun.com:30001/holidaywork/:match*"
+      "source": "/intl/api/(.*)",
+      "destination": "/api/proxy"
     },
     {
-      "source": "/ext/api/:match*",
-      "destination": "https://service-opugde4o-1301539318.hk.apigw.tencentcs.com/release/:match*"
+      "source": "/ext/api/(.*)",
+      "destination": "/api/proxy"
     }
   ]
-}
+ }
