@@ -9,12 +9,8 @@ const useSubjectsStore = defineStore('subjects', {
   // 持久化
   persist: true,
 
-  getters: {
-    // subjects: (state) => state.subjects,
-  },
-
   actions: {
-    async doGetSubjects() {
+    async set() {
       const res = await getSubjects();
       const { data, state } = res.data;
       if (state == 'ok') {

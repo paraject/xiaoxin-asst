@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import TodayView from '@/views/TodayView.vue';
 import TasksView from '@/views/TasksView.vue';
+import TaskSubmit from '@/views/TaskSubmit.vue';
 import LoginIdentifierView from '@/views/login/IdentifierView.vue';
 import LoginChallengeView from '@/views/login/ChallengeView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
@@ -13,7 +14,6 @@ const router = createRouter({
     {
       path: '/login',
       redirect: '/login/identifier',
-      meta: { isLoginView: true, keepAlive: false },
       children: [
         {
           path: 'identifier',
@@ -33,7 +33,7 @@ const router = createRouter({
     // 主页
     {
       path: '/',
-      redirect: '/tasks',
+      redirect: '/today',
     },
     {
       path: '/today',
@@ -47,10 +47,16 @@ const router = createRouter({
       component: TasksView,
       meta: { requiresAuth: true, keepAlive: true },
     },
-
+    {
+      path: '/tasks/submit/:taskId',
+      name: 'task-submit',
+      component: TaskSubmit,
+      meta: { requiresAuth: true, keepAlive: true },
+    },
     // 404 Not Found
     {
-      path: '/404',
+      hide: true,
+      path: '/:pathMatch(.*)*',
       name: '404',
       component: NotFoundView,
     },

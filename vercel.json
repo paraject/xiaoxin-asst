@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/:path*", "destination": "/index.html" },
     {
       "source": "/intl/api/:match*",
       "destination": "https://zuoyenew.xinkaoyun.com:30001/holidaywork/:match*"

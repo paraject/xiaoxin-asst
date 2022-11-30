@@ -39,7 +39,7 @@ export function getTasks(data) {
  * @returns {String} data.task.taskName 作业名称
  * @returns {String} data.task.createTime 作业任务创建时间 格式：2018-01-01 00:00:00
  * @returns {String} data.task.submitTime 作业任务开始时间（同 getTasks() 返回的 data.startTime） 格式：2018-01-01 00:00:00
- * @returns {String} data.task.finishTime 作业任务截止时间* 格式：2018-01-01 00:00:00
+ * @returns {String} data.task.finishTime 作业任务截止时间（事实截止时间） 格式：2018-01-01 00:00:00
  * @returns {String} data.task.answerTime 作业任务应答时间（不是提交时间） 格式：2018-01-01 00:00:00
  * @returns {String} data.task.subName 学科名称
  * @returns {Number} data.task.sid 学科id
@@ -68,6 +68,24 @@ export function getTaskInfo(data) {
   return request({
     method: 'post',
     url: '/intl/api/student/getTaskInfo',
+    data: qs.stringify(data),
+  });
+}
+
+/**
+ * 获取已提交作业详情
+ * @param {Object} data
+ * @param {String} data.taskId 作业id
+ * @param {String} data.token 用户token
+ * @returns {Promise}
+ * @returns {Object[Array]} data
+ * @returns {String} data.[]taskId 作业id
+ * @todo 该 api 未完成。展示已提交作业详情的页面先不写了，临时直接弹窗“作业已提交”替补。有空再写。2022-11-30 18:12:00
+ */
+export function getTaskInfoSubmitted(data) {
+  return request({
+    method: 'post',
+    url: '/intl/api/student/getTaskInfoSubmitted',
     data: qs.stringify(data),
   });
 }

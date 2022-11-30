@@ -9,23 +9,9 @@
     <!-- 主体部分 -->
     <div class="max-w-7xl mx-auto py-2 sm:px-6 lg:px-8">
       <!-- 警示用户 banner -->
-      <div class="max-w-7xl mx-auto pt-2 sm:px-6 lg:px-8">
-        <div class="mt-4 px-4 rounded-md bg-blue-50 p-4">
-          <div class="flex">
-            <div class="flex-shrink-0">
-              <InformationCircleIcon
-                class="h-5 w-5 text-blue-400"
-                aria-hidden="true"
-              />
-            </div>
-            <div class="ml-3 flex-1 md:flex md:justify-between">
-              <p class="text-sm text-blue-700"
-                >本页面显示的今日学科任务可能不符合您所在班级或任课教师的要求，请注意核查。</p
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+      <InfoAlert class="py-2"
+        >本页面显示的今日学科任务可能不符合您所在班级或任课教师的要求，请注意核查。
+      </InfoAlert>
 
       <!-- 已逾期的作业 -->
       <div>
@@ -40,7 +26,7 @@
             role="list"
             class="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden"
           >
-            <li v-for="task in overdueTasks" :key="task.tsakId">
+            <li v-for="task in todayTasks.overdue" :key="task.tsakId">
               <a class="block px-4 py-4 bg-white hover:bg-gray-50">
                 <span class="flex items-center space-x-4">
                   <span class="flex-1 flex space-x-2 truncate">
@@ -73,7 +59,7 @@
           <div class="bg-white px-4 py-3 border-t border-gray-200">
             <p class="text-sm text-gray-700">
               已展示全部{{ ' ' }}
-              <span class="font-medium">{{ overdueTasks.length }}</span>
+              <span class="font-medium">{{ todayTasks.overdue.length }}</span>
               {{ ' ' }}
               个作业
             </p>
@@ -131,7 +117,7 @@
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     <tr
-                      v-for="task in overdueTasks"
+                      v-for="task in todayTasks.overdue"
                       :key="task.taskId"
                       class="bg-white"
                     >
@@ -191,9 +177,11 @@
                   <div>
                     <p class="text-sm text-gray-700">
                       已载入全部{{ ' ' }}
-                      <span class="font-medium">{{ overdueTasks.length }}</span>
+                      <span class="font-medium">{{
+                        todayTasks.overdue.length
+                      }}</span>
                       {{ ' ' }}
-                      个作业任务
+                      个作业
                     </p>
                   </div>
                   <!-- 数据少，就不用分页了 -->
@@ -231,7 +219,7 @@
             role="list"
             class="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden"
           >
-            <li v-for="task in todoTasks" :key="task.tsakId">
+            <li v-for="task in todayTasks.todo" :key="task.tsakId">
               <a class="block px-4 py-4 bg-white hover:bg-gray-50">
                 <span class="flex items-center space-x-4">
                   <span class="flex-1 flex space-x-2 truncate">
@@ -264,33 +252,12 @@
           <div class="bg-white px-4 py-3 border-t border-gray-200">
             <p class="text-sm text-gray-700">
               已展示全部{{ ' ' }}
-              <span class="font-medium">{{ todoTasks.length }}</span>
+              <span class="font-medium">{{ todayTasks.todo.length }}</span>
               {{ ' ' }}
               个作业
             </p>
           </div>
         </div>
-
-        <!-- 数据少，就不用分页了 -->
-        <!-- <nav
-              class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"
-              aria-label="Pagination"
-            >
-              <div class="flex-1 flex justify-between">
-                <a
-                  href="#"
-                  class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                >
-                  上一页
-                </a>
-                <a
-                  href="#"
-                  class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                >
-                  下一页
-                </a>
-              </div>
-            </nav> -->
 
         <!-- 表格：未完成的作业（sm 断点及以上） -->
         <div class="hidden sm:block">
@@ -322,7 +289,7 @@
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     <tr
-                      v-for="task in todoTasks"
+                      v-for="task in todayTasks.todo"
                       :key="task.taskId"
                       class="bg-white"
                     >
@@ -382,26 +349,13 @@
                   <div>
                     <p class="text-sm text-gray-700">
                       已载入全部{{ ' ' }}
-                      <span class="font-medium">{{ todoTasks.length }}</span>
+                      <span class="font-medium">{{
+                        todayTasks.todo.length
+                      }}</span>
                       {{ ' ' }}
-                      个作业任务
+                      个作业
                     </p>
                   </div>
-                  <!-- 数据少，就不用分页了 -->
-                  <!-- <div class="flex-1 flex justify-between sm:justify-end">
-                        <a
-                          href="#"
-                          class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                        >
-                          上一页
-                        </a>
-                        <a
-                          href="#"
-                          class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                        >
-                          下一页
-                        </a>
-                      </div> -->
                 </nav>
               </div>
             </div>
@@ -414,42 +368,22 @@
 </template>
 
 <script setup>
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from '@headlessui/vue';
-import {
-  CogIcon,
-  MenuIcon,
-  XIcon,
-  UserIcon,
-  LogoutIcon,
-  DocumentTextIcon,
-  ChevronRightIcon,
-  InformationCircleIcon,
-} from '@heroicons/vue/outline';
-import NavBar from '@/components/NavBar.vue';
 import { onMounted, ref } from 'vue';
-import { RouterLink } from 'vue-router';
-
-import useUserStore from '@/stores/user';
+// components
+import InfoAlert from '@/components/InfoAlert.vue';
+// icons
+import { DocumentTextIcon, ChevronRightIcon } from '@heroicons/vue/outline';
+// stores
 import useSubjectsStore from '@/stores/subjects';
 import useTasksStore from '@/stores/tasks';
-import useTodayStore from '@/stores/today';
 
-const userStore = useUserStore();
+import moment from 'moment';
+
 const subjectsStore = useSubjectsStore();
 const tasksStore = useTasksStore();
-const todayStore = useTodayStore();
 
-const overdueTasks = todayStore.today.overdue || [];
-const todoTasks = todayStore.today.todo || [];
-const doneTasks = todayStore.today.done || [];
+const isViewShow = ref(false);
+const todayTasks = ref({ overdue: [], todo: [], done: [] });
 
 const statusStyles = {
   已提交: 'bg-green-100 text-green-800',
@@ -457,7 +391,51 @@ const statusStyles = {
   已批改: 'bg-gray-100 text-gray-800',
 };
 
-const doLogout = () => {
-  userStore.logout();
+// 计算今日任务
+const doGetAllTasks = async () => {
+  // 所有科目 id 放到一个数列用于 promise 请求
+  const sids = subjectsStore.subjects.map((i) => i.sid);
+  await Promise.all(sids.map((sid) => tasksStore.set(sid))) //设置状态：所有科目作业
+
+    .then(() => {
+      // 开始计算
+      let allTasks = [];
+      // 从数据列表生成数据源
+      sids.map((sid) => allTasks.push(...tasksStore.tasks[sid]));
+      // 筛选截止日期为今天及今天之前且未提交的作业
+      const today = moment().format('YYYY-MM-DD 23:59:59');
+      const overdueTasks = allTasks.filter(
+        (i) => moment(i.finishTime).isBefore(today) && i.submitCode == 0
+      );
+      // 筛选截止日期为今天且未提交的作业
+      const todoTasks = allTasks.filter(
+        (i) => moment(i.finishTime).isSame(today, 'day') && i.submitCode == 0
+      );
+      // 筛选截止日期为今天且已提交的作业
+      const doneTasks = allTasks.filter(
+        (i) => moment(i.finishTime).isSame(today, 'day') && i.submitCode == 1
+      );
+      // 按照截止日期由近到远排序
+      overdueTasks.sort((a, b) =>
+        moment(a.finishTime).isBefore(b.finishTime) ? -1 : 1
+      );
+      todoTasks.sort((a, b) =>
+        moment(a.finishTime).isBefore(b.finishTime) ? -1 : 1
+      );
+      doneTasks.sort((a, b) =>
+        moment(a.finishTime).isBefore(b.finishTime) ? -1 : 1
+      );
+      todayTasks.value = {
+        overdue: overdueTasks,
+        todo: todoTasks,
+        done: doneTasks,
+      };
+      isViewShow.value = true;
+    });
 };
+
+onMounted(() => {
+  subjectsStore.set();
+  doGetAllTasks();
+});
 </script>

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { getTasks } from '@/api/tasks';
-import useSubjectsStore from './subjects';
 import moment from 'moment';
 
 const useTasksStore = defineStore('tasks', {
@@ -8,51 +7,26 @@ const useTasksStore = defineStore('tasks', {
     tasks: {},
   }),
 
-  // 持久化
-  persist: true,
-
   actions: {
-    // 获取某学科作业，需要附带学科名称 subName
-    async doGetTasks(subName) {
-      const subjectsStore = useSubjectsStore();
-      const res = await getTasks(
-        {
-          sid: subjectsStore.subjects.filter((i) => i.subname == subName)[0]
-            .sid,
-          page: 1,
-          limit: 99999,
-        },
-        subName
-      );
+    async set(sid) {
+      // 请求获取对应学科的作业列表
+      const res = await getTasks({
+        sid: sid,
+        page: 1,
+        limit: 99999,
+      });
       const { data, state } = res.data;
       if (state == 'ok') {
-        // 打上学科戳
-        const subTasks = data.map(function (item) {
-          item.subName = subName;
-          return item;
-        });
-        // 依据时间由近到远排序
-        this.tasks[subName] = subTasks.sort((a, b) =>
+        // 用不到了，发现实际需求不需要显示科目，注释了。2022-11-30 12:22:00
+        // 给每个作业添加学科 id 属性
+        // const tasks = data.map(function (i) {
+        //   i.sid = sid;
+        //   return i;
+        // });
+        // 依据时间由近到远排序，并赋值到对应的学科
+        this.tasks[sid] = data.sort((a, b) =>
           moment(a.finishTime).isBefore(b.finishTime) ? -1 : 1
         );
-      }
-    },
-
-    // promise 遍历请求所有学科作业列表
-    async doGetAllTasks() {
-      const subjectsStore = useSubjectsStore();
-      const subjectNames = subjectsStore.subjects.map((i) => i.subname);
-      await Promise.all(
-        subjectNames.map((subName) => this.doGetTasks(subName))
-      );
-      window.$message.success('作业列表已更新');
-    },
-
-    async doGetTodyTasks() {
-      const res = await getSubjects();
-      const { data, state } = res.data;
-      if (state == 'ok') {
-        this.subjects = data;
       }
     },
   },

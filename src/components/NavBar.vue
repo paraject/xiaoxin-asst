@@ -197,7 +197,7 @@ const userStore = useUserStore();
 // navigation items data
 const navigation = [
   { name: '今天', to: '/today' },
-  { name: '作业', to: '/tasks' },
+  { name: '作业', to: '/task' },
 ];
 
 const userNavigation = [

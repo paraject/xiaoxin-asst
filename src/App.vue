@@ -4,7 +4,7 @@
     <NavBar v-if="$route.meta.keepAlive" />
   </header>
 
-  <main>
+  <main class="min-h-full">
     <router-view v-slot="{ Component }">
       <keep-alive>
         <component :is="Component" />
@@ -22,10 +22,14 @@
     <!-- 全局挂载 NaiveUI 脱离上下文的 API -->
     <!-- https://www.naiveui.com/zh-CN/os-theme/components/discrete -->
     <NaiveuiApi />
+
+    <!-- 页脚 -->
+    <FooBar v-if="$route.meta.keepAlive" />
   </main>
 </template>
 
 <script setup>
 import NaiveuiApi from '@/components/NaiveuiApi.vue';
-import NavBar from './components/NavBar.vue';
+import NavBar from '@/components/NavBar.vue';
+import FooBar from '@/components/FooBar.vue';
 </script>
