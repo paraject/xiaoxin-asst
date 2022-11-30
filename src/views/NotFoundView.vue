@@ -28,7 +28,7 @@
               href="/about"
               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-500 bg-primary-100 hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
-              联系支持
+              请求支持
             </a>
           </div>
         </div>
