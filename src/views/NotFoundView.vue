@@ -25,7 +25,7 @@
               追问？
             </button>
             <button
-              href="/about"
+              href="https://qm.qq.com/cgi-bin/qm/qr?k=oODhHNppngYT8cXnCQeUT3glwEYdjmRd&jump_from=webapi&authKey=3k9HnJVMowzprwEvZjA5ioj7i67Crk8nF6WR6KRmVSKGQQy8+y1vbdRAyTk+TI3P"
               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-500 bg-primary-100 hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
               详细咨询
