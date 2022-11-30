@@ -56,8 +56,11 @@ export default {
                 //验证通过
                 this.passVerify();
               }
+              else if (res.status == "suspend") {
+                //验证不通过
+                alert("您已被禁用，请联系管理员");
+              }
               else {
-                //验证失败
                 this.signModal = true;
               }
             })
