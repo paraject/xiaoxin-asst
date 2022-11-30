@@ -25,7 +25,7 @@
         <div class="text-center lg:text-left">
           <img
             class="inline h-11 w-auto lg:block"
-            src="/img/xiaoxin-logo-icon.png"
+            src="/img/logo-icon.png"
             alt="Xiaoxin Logo"
           />
           <h2 class="mt-6 text-2xl lg:text-3xl font-medium text-gray-900">
