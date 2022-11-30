@@ -127,7 +127,7 @@
                       as="h3"
                       class="mt-4 text-lg leading-6 font-medium text-gray-900"
                     >
-                      @Youxam
+                      @YouXam
                     </DialogTitle>
                     <p class="mt-2 text-sm text-gray-500">
                       希望大家能找到自己人生的真正使命，<br />
