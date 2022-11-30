@@ -64,7 +64,7 @@ export default {
       }*/
 
 
-      if (subjectOther.length==0) {
+      if (subjectOther.length == 0) {
         console.log(1)
         this.taskData.forEach((one) => {
           if (one.hasSubjectiveItem == 1) {
@@ -80,20 +80,20 @@ export default {
         })
       }
       else {
-          subjectOther.forEach((subject) => {
-            let oneTea = [];
-            subject.images.forEach((image) => {
-              oneTea.push(`${subject.teaId},${image}`)
-            })
-
-            subjectSelf.forEach((own) => {
-              if (own.teaCode == subject.teaCode) {
-                oneTea.push(`${subject.teaId},${own.url}`)
-              }
-            })
-
-            subjective.push(oneTea.join(';'))
+        subjectOther.forEach((subject) => {
+          let oneTea = [];
+          subject.images.forEach((image) => {
+            oneTea.push(`${subject.teaId},${image}`)
           })
+
+          subjectSelf.forEach((own) => {
+            if (own.teaCode == subject.teaCode) {
+              oneTea.push(`${subject.teaId},${own.url}`)
+            }
+          })
+
+          subjective.push(oneTea.join(';'))
+        })
 
       }
 
@@ -335,20 +335,20 @@ export default {
             </div>
 
             <div class="px-10 py-5 text-gray-600 font-bold leading-6">
-              小鑫助手极大的方便了同学们的假期生活，但开发和维护项目都需要成本，希望有能力的同学可以支持赞助，您的支持就是我们前进的动力。
+              小鑫助手极大的方便了同学们的假期生活，但开发和维护项目都需要极高的精力和成本，希望有能力的同学可以支持赞助，您的支持就是我们前进的动力。
               <div class="sm:flex">
                 <div class="mt-2">
                   <img src="../assert/reward.png" class="w-20 rounded-md shrink-0 ring-4 ring-green-200">
                 </div>
                 <div class="w-48 sm:ml-4 sm:mt-1 mt-2">
-                  <a class="text-lg" href="https://jq.qq.com/?_wv=1027&k=FLpEj4b8">
-                    <span class="badge badge-primary badge-outline">
-                      QQ一群:756016909
-                    </span>
-                  </a>
                   <a class="text-lg mt-3" href="https://jq.qq.com/?_wv=1027&k=cPvj2Vft">
                     <span class="badge badge-primary badge-outline">
                       QQ二群:745731575
+                    </span>
+                  </a>
+                  <a class="text-lg" href="https://jq.qq.com/?_wv=1027&k=TI6ZmNys">
+                    <span class="badge badge-primary badge-outline">
+                      QQ三群：625268678
                     </span>
                   </a>
                   <a class="text-lg mt-3"
