@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isViewShow">
+  <div>
     <!-- 标题栏 -->
     <div class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-4 px-4 flex items-start sm:px-6 lg:px-8">
@@ -17,7 +17,7 @@
     </div>
 
     <!-- 主体 -->
-    <div class="max-w-7xl mx-auto py-2 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-2 sm:px-6 lg:px-8" v-if="isViewShow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div
           class="md:flex md:items-center md:justify-between md:space-x-4 border-b pb-6"
@@ -90,23 +90,13 @@ const router = useRouter();
 const taskInfoStore = useTaskInfoStore();
 const isViewShow = ref(false);
 
-const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  // More people...
-];
-
 onActivated(() => {
   isViewShow.value = false;
   taskInfoStore.set(route.params.taskId).then(() => {
-    isViewShow.value = true;
+    // 给点数据缓冲时间
+    setTimeout(() => {
+      isViewShow.value = true;
+    }, 400);
   });
 });
 </script>

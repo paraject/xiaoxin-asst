@@ -538,6 +538,7 @@ const subjectsStore = useSubjectsStore();
 const tasksStore = useTasksStore();
 
 const isViewShow = ref(false);
+
 const todayTasks = ref({ overdue: [], todo: [], done: [] });
 
 const statusStyles = {
@@ -585,7 +586,10 @@ const doGetAllTasks = async () => {
         todo: todoTasks,
         done: doneTasks,
       };
-      isViewShow.value = true;
+      // 给点数据缓冲时间
+      setTimeout(() => {
+        isViewShow.value = true;
+      }, 400);
     });
 };
 
