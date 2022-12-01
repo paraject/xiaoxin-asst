@@ -100,8 +100,8 @@ export default {
   <header-box></header-box>
 
   <div class="px-2 md:px-10 mt-6 dark:bg-zinc-800 bg-white">
-    <div class="tabs sm:ml-6 mb-4">
-      <a v-for="(single, index) in this.subjects" :key="index" :class="this.nowSubjectIndex == index ? 'tab bg-blue-500 text-white font-bold' : 'tab  font-bold text-blue-500 border'" class="transition ease-in-out duration-200 rounded-xl mx-0.5 my-0.5 px-2.5" @click="goSubject(index)">{{ single.subname }}</a>
+    <div class="tabs sm:ml-6 mb-4 ">
+      <a v-for="(single, index) in this.subjects" :key="index" :class="this.nowSubjectIndex == index ? 'tab bg-blue-500 text-white font-bold' : 'tab  font-bold text-blue-500 border'" class="transition ease-in-out duration-200 rounded-xl mx-0.5 my-0.5 px-2.5 dark:text-white" @click="goSubject(index)">{{ single.subname }}</a>
     </div>
 
     <div class="md:mx-6" v-if="this.nowSubject.length != 0">
