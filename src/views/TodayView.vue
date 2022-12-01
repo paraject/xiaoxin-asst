@@ -558,10 +558,10 @@ const doGetAllTasks = async () => {
       let allTasks = [];
       // 从数据列表生成数据源
       sids.map((sid) => allTasks.push(...tasksStore.tasks[sid]));
-      // 筛选截止日期为今天及今天之前且未提交的作业
+      // 筛选截止日期为今天之前且未提交的作业
       const today = moment().format('YYYY-MM-DD 23:59:59');
       const overdueTasks = allTasks.filter(
-        (i) => moment(i.finishTime).isBefore(today) && i.submitCode == 0
+        (i) => moment(i.finishTime).isBefore(today, 'day') && i.submitCode == 0
       );
       // 筛选截止日期为今天且未提交的作业
       const todoTasks = allTasks.filter(
