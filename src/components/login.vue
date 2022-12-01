@@ -7,8 +7,8 @@ export default {
       token: null,
       signModal: false,
       signCode: '',
-      userLoginData: {},
-    };
+      userLoginData: {}
+    }
   },
   mounted() {
     if (this.Cookies.get('token')) {
@@ -53,27 +53,29 @@ export default {
                 if (res.status == 'active') {
                   //验证通过
                   this.passVerify();
-                } else if (res.status == 'suspend') {
-                  //验证不通过
-                  alert('您已被禁用，请联系管理员');
-                } else {
-                  this.signModal = true;
-                }
-              })
+              }
+              else if (res.status == "suspend") {
+                //验证不通过
+                alert("服务暂停");
+              }
+              else {
+                this.signModal = true;
+              }
+            })
+            .catch(err => {
+              //api炸了，还能访问。
+              this.passVerify();
+            });
 
-              .catch((err) => {
-                //api炸了，还能访问。
-                this.passVerify();
-              });
-          } else if (res.state == 'fail') {
-            alert(res.msg);
-          } else {
-            alert(res.msg);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+        } else if (res.state == 'fail') {
+          alert(res.msg);
+        } else {
+          alert(res.msg);
+        }
+      }).catch(err => {
+        console.log(err);
+      })
     },
     sign() {
       fetch('https://xiaoxinapi.hissin.cn/verify', {
@@ -113,7 +115,7 @@ export default {
 <template>
   <div>
     <div class="relative min-h-screen flex">
-      <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white dark:bg-zinc-800">
+<div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white dark:bg-zinc-800">
         <div class="sm:w-1/2 xl:w-3/5 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative" style="background-image: url()">
           <div class="absolute bg-gradient-to-b from-indigo-600 to-blue-500 dark:from-indigo-700 dark:to-blue-600 opacity-75 inset-0 z-0"></div>
           <div class="w-full max-w-md z-10">
@@ -134,10 +136,13 @@ export default {
             <li></li>
           </ul>
         </div>
+
         <div class="sm:flex sm:items-center sm:justify-center sm:w-full md:h-full xl:w-full p-8 md:p-8 lg:p-10 sm:rounded-lg md:rounded-none">
           <div class="max-w-md w-full space-y-8">
             <div class="flex flex-row justify-center items-center space-x-3">
-              <a href="http://homework.xinkaoyun.com/" target="_blank" class="w-11 h-11 items-center justify-center inline-flex font-bold text-l cursor-pointer transition ease-in duration-300"><img class="w-full h-full rounded-4xl" src="../assert/logo.png" /> </a>
+              <a href="http://homework.xinkaoyun.com/" target="_blank"
+                class="w-11 h-11 items-center justify-center inline-flex font-bold text-l cursor-pointer transition ease-in duration-300"><img
+                  class="w-full h-full rounded-4xl" src="../assert/logo.png" /> </a>
             </div>
             <div class="text-center">
               <h2 class="mt-6 text-2xl font-bold dark:text-zinc-200">小鑫助手·焕然一新</h2>
@@ -157,6 +162,7 @@ export default {
                   </svg>
                 </div>
               -->
+              
                 <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide dark:text-zinc-200">账户</label>
                 <input v-model="tel" class="w-full text-base px-4 py-2 border-b border-gray-300 outline-none rounded-2xl focus:border-indigo-500 transition-all duration-200 ease-linear dark:bg-zinc-700 dark:border-gray-900 dark:text-white dark:placeholder:text-zinc-300" type="" placeholder="小鑫作业用户名/手机号" />
               </div>
@@ -170,14 +176,17 @@ export default {
                   <label for="remember_me" class="ml-2 block text-sm text-gray-900 dark:text-zinc-200"> 在该设备上保持登录 </label>
                 </div>
                 <div class="text-sm">
-                  <a href="http://homework.xinkaoyun.com/" class="text-blue-500 hover:text-blue-700 font-bold"> 忘记密码？ </a>
+                  <a href="http://homework.xinkaoyun.com/" class="text-blue-500 hover:text-blue-700 font-bold"> 忘记密码？
+                  </a>
                 </div>
               </div>
               <div>
-                <button @click="login()" class="w-full flex justify-center bg-gradient-to-r from-blue-500 to-purple-500 bg-[length:200%] bg-center hover:bg-right text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition-all ease-linear duration-300 border-solid hover:border-blue-500 border-2 border-transparent hover:shadow-xl">登录以继续</button>
+                <button @click="login()"
+                  class="w-full flex justify-center bg-gradient-to-r from-blue-500 to-purple-500 bg-[length:200%] bg-center hover:bg-right text-gray-100 p-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition-all ease-linear duration-300 border-solid hover:border-blue-500 border-2 border-transparent hover:shadow-xl">登录以继续</button>
               </div>
               <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
-                <span><a href="https://temp.geekpara.com/" class="text-blue-500 font-bold hover:text-blue-700 no-underline hover:underline cursor-pointer transition ease-in duration-300">推荐使用体温助手</a></span>
+                <span><a href="https://temp.geekpara.com/"
+                    class="text-blue-500 font-bold hover:text-blue-700 no-underline hover:underline cursor-pointer transition ease-in duration-300">推荐使用体温助手</a></span>
               </p>
             </table>
           </div>
@@ -210,11 +219,15 @@ export default {
             为了更好的提供服务，需要验证您的身份。选择下方任意一种方式加群,浏览群公告获取邀请码，才能继续使用小鑫助手。验证结束后，不会要求您再次验证。
 
             <div class="mt-1 sm:mt-2 md:mt-4">
-              <a class="text-lg mt-3 mr-2" href="https://jq.qq.com/?_wv=1027&k=FLpEj4b8">
-                <span class="badge badge-primary badge-outline"> QQ一群:756016909 </span>
-              </a>
               <a class="text-lg mt-3 mr-2" href="https://jq.qq.com/?_wv=1027&k=cPvj2Vft">
-                <span class="badge badge-primary badge-outline"> QQ二群:745731575 </span>
+                <span class="badge badge-primary badge-outline">
+                  QQ二群:745731575
+                </span>
+              </a>
+              <a class="text-lg mt-3 mr-2" href="https://jq.qq.com/?_wv=1027&k=TI6ZmNys">
+                <span class="badge badge-primary badge-outline">
+                  QQ三群：625268678
+                </span>
               </a>
               <a class="text-lg mt-3 mr-2" href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,mQvtrGj2v7QyElRcjOGFciRHyuduanL5u+OlefppD64=&_dt_no_comment=1&origin=11">
                 <span class="badge badge-primary badge-outline"> 钉钉群:31846657 </span>
