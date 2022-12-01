@@ -64,7 +64,7 @@ export default {
       }*/
 
 
-      if (subjectOther.length == 0) {
+      if (!subjectOther || subjectOther.length == 0) {
         console.log(1)
         this.taskData.forEach((one) => {
           if (one.hasSubjectiveItem == 1) {
