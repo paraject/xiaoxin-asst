@@ -101,6 +101,9 @@
                     <p class="mt-2 text-sm text-gray-500">
                       哦对，这些话会随时更新，好奇可以随时瞅瞅。
                     </p>
+                    <p class="mt-2 text-sm text-gray-500">
+                      (A-Z)
+                    </p>
                     <DialogTitle
                       as="h3"
                       class="mt-4 text-lg leading-6 font-medium text-gray-900"
@@ -141,7 +144,7 @@
                       鸣谢
                     </DialogTitle>
                     <p class="mt-2 text-sm text-gray-500">
-                      为助手做出贡献的个人(A-Z)：<br />
+                      为助手做出过贡献的个人(A-Z)：<br />
                       - @Hissin<br />
                       - @Junical<br />
                       - @Kwaain<br />
@@ -154,7 +157,10 @@
                       <br />
                       <i><strong>———包括你。</strong></i>
                     </p>
-                    <p class="mt-4 text-sm text-gray-500">以上。<br />二〇二二年十二月一日子时<br/>PARAJECT 社团</p>
+                    <p class="mt-4 text-sm text-gray-500"
+                      >以上。<br />二〇二二年十二月一日子时<br />PARAJECT
+                      社团</p
+                    >
                   </div>
                 </div>
               </div>
