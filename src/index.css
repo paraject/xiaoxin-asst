@@ -2,3 +2,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body,
+  html {
+    @apply min-h-screen dark:!bg-zinc-800 bg-white;
+  }
+}
+
+@layer components {
+  .table .rounded-b-lg tr > td,
+  .table .rounded-b-lg tr > th {
+    @apply dark:!bg-zinc-700 dark:text-white;
+  }
+
+  .btn-ghost {
+    @apply dark:hover:bg-zinc-600;
+  }
+}

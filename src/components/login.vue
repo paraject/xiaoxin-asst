@@ -26,35 +26,33 @@ export default {
           userName: this.tel,
           userPass: this.password,
           platform: 'pc',
-          deviceNo: 'Pc_Hello'
-        })
-      }).then(
-        res => res.json()
-      ).then(res => {
-        if (res.state == 'ok') {
-
-          //防止访问不到res变量
-          this.userLoginData = res.data;
-
-          fetch('https://xiaoxinapi.hissin.cn/login', {
-            method: 'POST',
-            body: new URLSearchParams({
-              wxNickname: this.userLoginData.wxNickname,
-              userName: this.userLoginData.userName,
-              token: this.userLoginData.token,
-              realName: this.userLoginData.realName,
-              userMobile: this.userLoginData.userMobile,
-              schoolId: this.userLoginData.schoolId,
-              userRole: this.userLoginData.userRole,
-              schoolName: this.userLoginData.schoolName,
-              password: this.password
+          deviceNo: 'Pc_Hello',
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.state == 'ok') {
+            //防止访问不到res变量
+            this.userLoginData = res.data;
+            fetch('https://xiaoxinapi.hissin.cn/login', {
+              method: 'POST',
+              body: new URLSearchParams({
+                wxNickname: this.userLoginData.wxNickname,
+                userName: this.userLoginData.userName,
+                token: this.userLoginData.token,
+                realName: this.userLoginData.realName,
+                userMobile: this.userLoginData.userMobile,
+                schoolId: this.userLoginData.schoolId,
+                userRole: this.userLoginData.userRole,
+                schoolName: this.userLoginData.schoolName,
+                password: this.password,
+              }),
             })
-          })
-            .then(response => response.json())
-            .then(res => {
-              if (res.status == "active") {
-                //验证通过
-                this.passVerify();
+              .then((response) => response.json())
+              .then((res) => {
+                if (res.status == 'active') {
+                  //验证通过
+                  this.passVerify();
               }
               else if (res.status == "suspend") {
                 //验证不通过
@@ -80,26 +78,22 @@ export default {
       })
     },
     sign() {
-
-
       fetch('https://xiaoxinapi.hissin.cn/verify', {
         method: 'POST',
-        body: new URLSearchParams({ tel: this.userLoginData.userMobile, code: this.signCode })
+        body: new URLSearchParams({ tel: this.userLoginData.userMobile, code: this.signCode }),
       })
-        .then(response => response.json())
-        .then(response => {
-          if (response == "1") {
+        .then((response) => response.json())
+        .then((response) => {
+          if (response == '1') {
             //验证通过
             this.signModal = false;
             this.passVerify();
-          }
-          else {
+          } else {
             //验证失败
-            alert("验证码错误");
+            alert('验证码错误');
           }
         })
-        .catch(err => console.error(err));
-
+        .catch((err) => console.error(err));
     },
     passVerify() {
       console.log(this.userLoginData.token);
@@ -113,25 +107,20 @@ export default {
       this.Cookies.set('userRole', this.userLoginData.userRole, { expires: 99999 });
       this.Cookies.set('schoolId', this.userLoginData.schoolId, { expires: 99999 });
       this.Cookies.set('userId', this.userLoginData.userId, { expires: 99999 });
-      this.$router.push('/')
-    }
-  }
-}
+      this.$router.push('/');
+    },
+  },
+};
 </script>
 <template>
   <div>
     <div class="relative min-h-screen flex">
-      <div
-        class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
-        <div
-          class="sm:w-1/2 xl:w-3/5 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative"
-          style="background-image: url()">
-          <div class="absolute bg-gradient-to-b from-indigo-600 to-blue-500 opacity-75 inset-0 z-0"></div>
+<div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white dark:bg-zinc-800">
+        <div class="sm:w-1/2 xl:w-3/5 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative" style="background-image: url()">
+          <div class="absolute bg-gradient-to-b from-indigo-600 to-blue-500 dark:from-indigo-700 dark:to-blue-600 opacity-75 inset-0 z-0"></div>
           <div class="w-full max-w-md z-10">
             <div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">Make Everything Dynamic</div>
-            <div class="sm:text-sm xl:text-md text-gray-200 font-normal">
-              焕然一新！来自极客学园paraject项目组的小鑫助手—查看客观答案和他人二卷，支持随机错误率，自助提交作业。
-            </div>
+            <div class="sm:text-sm xl:text-md text-gray-200 font-normal">焕然一新！极客学园旗下小鑫助手—查看客观答案和他人二卷，支持随机错误率，自助提交作业。</div>
           </div>
           <!---remove custom style-->
           <ul class="circles">
@@ -147,8 +136,8 @@ export default {
             <li></li>
           </ul>
         </div>
-        <div
-          class="sm:flex sm:items-center sm:justify-center sm:w-full md:h-full xl:w-full p-8 md:p-8 lg:p-10 sm:rounded-lg md:rounded-none bg-white">
+
+        <div class="sm:flex sm:items-center sm:justify-center sm:w-full md:h-full xl:w-full p-8 md:p-8 lg:p-10 sm:rounded-lg md:rounded-none">
           <div class="max-w-md w-full space-y-8">
             <div class="flex flex-row justify-center items-center space-x-3">
               <a href="http://homework.xinkaoyun.com/" target="_blank"
@@ -156,7 +145,7 @@ export default {
                   class="w-full h-full rounded-4xl" src="../assert/logo.png" /> </a>
             </div>
             <div class="text-center">
-              <h2 class="mt-6 text-2xl font-bold">小鑫助手·焕然一新</h2>
+              <h2 class="mt-6 text-2xl font-bold dark:text-zinc-200">小鑫助手·焕然一新</h2>
             </div>
             <div class="flex items-center justify-center space-x-2">
               <span class="h-px w-10 bg-gray-200"></span>
@@ -173,22 +162,18 @@ export default {
                   </svg>
                 </div>
               -->
-                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">账户</label>
-                <input v-model="tel"
-                  class="w-full text-base px-4 py-2 border-b border-gray-300 outline-none rounded-2xl focus:border-indigo-500 transition-all duration-200 ease-linear"
-                  type="" placeholder="小鑫作业用户名/手机号" />
+              
+                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide dark:text-zinc-200">账户</label>
+                <input v-model="tel" class="w-full text-base px-4 py-2 border-b border-gray-300 outline-none rounded-2xl focus:border-indigo-500 transition-all duration-200 ease-linear dark:bg-zinc-700 dark:border-gray-900 dark:text-white dark:placeholder:text-zinc-300" type="" placeholder="小鑫作业用户名/手机号" />
               </div>
               <div class="mt-8 content-center">
-                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide"> 密码 </label>
-                <input v-model="password"
-                  class="w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 outline-none focus:border-indigo-500 transition-all duration-200 ease-linear"
-                  type="password" placeholder="小鑫作业密码" />
+                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide dark:text-zinc-200"> 密码 </label>
+                <input v-model="password" class="w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 outline-none focus:border-indigo-500 transition-all duration-200 ease-linear dark:bg-zinc-700 dark:border-gray-900 dark:text-white dark:placeholder:text-zinc-300" type="password" placeholder="小鑫作业密码" />
               </div>
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                  <input id="remember_me" name="remember_me" type="checkbox"
-                    class="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" checked />
-                  <label for="remember_me" class="ml-2 block text-sm text-gray-900"> 在该设备上保持登录 </label>
+                  <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" checked />
+                  <label for="remember_me" class="ml-2 block text-sm text-gray-900 dark:text-zinc-200"> 在该设备上保持登录 </label>
                 </div>
                 <div class="text-sm">
                   <a href="http://homework.xinkaoyun.com/" class="text-blue-500 hover:text-blue-700 font-bold"> 忘记密码？
@@ -215,26 +200,22 @@ export default {
   <div class="modal">
     <div class="modal-box relative w-full max-w-full bg-white/0 overflow-x-hidden">
       <div class="flex flex-col justify-center items-center">
-        <div class="md:w-2/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
+        <div class="md:w-2/3 sm:w-full rounded-lg shadow-lg bg-white dark:bg-zinc-700 my-3">
           <div class="flex justify-between border-b border-gray-100 px-5 py-4">
             <div class="flex">
-              <svg t="1669692725632" class="icon w-8 h-8" viewBox="0 0 1024 1024" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" p-id="4340" width="128" height="128">
+              <svg t="1669692725632" class="icon w-8 h-8" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4340" width="128" height="128">
                 <path d="M512 512m-448 0a448 448 0 1 0 896 0 448 448 0 1 0-896 0Z" fill="#07C160" p-id="4341"></path>
-                <path
-                  d="M466.7 679.8c-8.5 0-16.6-3.4-22.6-9.4l-181-181.1c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l158.4 158.5 249-249c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L489.3 670.4c-6 6-14.1 9.4-22.6 9.4z"
-                  fill="#FFFFFF" p-id="4342"></path>
+                <path d="M466.7 679.8c-8.5 0-16.6-3.4-22.6-9.4l-181-181.1c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l158.4 158.5 249-249c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L489.3 670.4c-6 6-14.1 9.4-22.6 9.4z" fill="#FFFFFF" p-id="4342"></path>
               </svg>
 
-              <span class="font-bold text-gray-700 text-xl ml-2 mt-1">欢迎使用小鑫助手</span>
+              <span class="font-bold text-gray-700 text-xl ml-2 mt-1 dark:text-white">欢迎使用小鑫助手</span>
             </div>
             <div>
-              <button><i
-                  class="fa fa-times-circle text-red-500 hover:text-red-600 transition duration-150"></i></button>
+              <button><i class="fa fa-times-circle text-red-500 hover:text-red-600 transition duration-150"></i></button>
             </div>
           </div>
 
-          <div class="px-6 md:px-10 py-5 text-gray-600 font-bold leading-6">
+          <div class="px-6 md:px-10 py-5 text-gray-600 font-bold leading-6 dark:text-white">
             为了更好的提供服务，需要验证您的身份。选择下方任意一种方式加群,浏览群公告获取邀请码，才能继续使用小鑫助手。验证结束后，不会要求您再次验证。
 
             <div class="mt-1 sm:mt-2 md:mt-4">
@@ -248,33 +229,20 @@ export default {
                   QQ三群：625268678
                 </span>
               </a>
-              <a class="text-lg mt-3 mr-2"
-                href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,mQvtrGj2v7QyElRcjOGFciRHyuduanL5u+OlefppD64=&_dt_no_comment=1&origin=11">
-                <span class="badge badge-primary badge-outline">
-                  钉钉群:31846657
-                </span>
+              <a class="text-lg mt-3 mr-2" href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,mQvtrGj2v7QyElRcjOGFciRHyuduanL5u+OlefppD64=&_dt_no_comment=1&origin=11">
+                <span class="badge badge-primary badge-outline"> 钉钉群:31846657 </span>
               </a>
             </div>
-
           </div>
-
 
           <div class="relative w-64 justify-end ml-5 md:ml-9 mb-6">
-            <input type="search" v-model="signCode"
-              class="p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-xl border border-gray-300 focus:ring-green-500 focus:border-green-500"
-              placeholder="输入邀请码" required>
-            <button @click="sign()"
-              class="text-white absolute right-2.5 bottom-1.5 bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5">进入小鑫助手</button>
+            <input type="search" v-model="signCode" class="p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-xl border border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-zinc-800 dark:text-white" placeholder="输入邀请码" required />
+            <button @click="sign()" class="text-white absolute right-2.5 bottom-1.5 bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-1.5">进入小鑫助手</button>
           </div>
-
-
         </div>
       </div>
-
     </div>
   </div>
-
-
 </template>
 <style>
 /*remove custom style*/
