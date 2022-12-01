@@ -28,7 +28,7 @@ export default {
     <div class="navbar">
       <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl px-2 dark:hover:bg-zinc-600" @click="backhome()">
-          <img src="../assert/logo.png" class="h-8 mr-2 rounded-lg text-base" /><span class="text-gray-900 flex items-center dark:text-white">小鑫助手<span class="text-sm ml-0.5">V1.8.5🎉</span></span>
+          <img src="../assert/logo.png" class="h-8 mr-2 rounded-lg text-base" /><span class="text-gray-900 flex items-center dark:text-white">小鑫助手<!--<span class="text-sm ml-0.5">V1.8.5🎉</span>--></span>
         </a>
       </div>
       <div class="flex-none">
