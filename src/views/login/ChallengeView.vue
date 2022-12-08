@@ -29,7 +29,7 @@
             alt="Xiaoxin Logo"
           />
           <h2 class="mt-6 text-2xl lg:text-3xl font-medium text-gray-900">
-            登录到小鑫助手
+            登录到小鑫 Plus
           </h2>
           <p class="mt-2 text-sm text-gray-600">
             使用账户

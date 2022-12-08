@@ -19,8 +19,8 @@ const useUserStore = defineStore('user', {
   actions: {
     /**
      * 登录逻辑
-     * @param {object} loginData 用于请求 api 的数据
-     * @param {string} redirect 登录后重定向地址（可选）
+     * @param {Object} loginData 用于请求 api 的数据
+     * @param {String} redirect 登录后重定向地址（可选）
      */
     async login(loginData, redirect) {
       const res = await postLogin(loginData);
@@ -32,10 +32,14 @@ const useUserStore = defineStore('user', {
       }
     },
 
-    logout() {
+    /**
+     * 登出逻辑
+     * @param {String} msg 登出提示信息 若不传入则默认为“您已退出登录”
+     */
+    logout(msg) {
       this.user = {};
-      window.$message.success('您已退出登录');
       localStorage.removeItem('token'); // 移除独立存储的 token
+      window.$message.success(msg || '您已退出登录');
       location.reload();
     },
   },

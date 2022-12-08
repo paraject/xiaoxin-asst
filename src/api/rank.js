@@ -22,6 +22,6 @@ export function getTaskRank(data) {
   return request({
     method: 'post',
     url: '/intl/api/student/getGradeRanks',
-    data: qs.Stringify(data),
+    data: qs.stringify(data),
   });
 }

@@ -6,11 +6,14 @@
         <h1 class="text-3xl font-bold text-gray-900"
           >今天
           <span class="text-2xl ml-1 font-extralight text-gray-600"
-            >{{new Date().getMonth()+1+' '}}月{{' '+new Date().getDate()+' '}}日</span
+            >{{ new Date().getMonth() + 1 + ' ' }}月{{
+              ' ' + new Date().getDate() + ' '
+            }}日</span
           >
         </h1>
       </div>
     </div>
+
     <!-- 主体部分 -->
     <div class="max-w-7xl mx-auto py-2 sm:px-6 lg:px-8">
       <!-- 警示用户 -->
@@ -133,7 +136,7 @@
                         class="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                       >
                         <div class="flex">
-                          <p
+                          <div
                             @click="goTaskWhere(task.taskId, task.submitCode)"
                             class="group inline-flex space-x-2 truncate text-sm"
                           >
@@ -147,7 +150,7 @@
                               {{ task.taskName }}
                             </p>
                             <span class="text-gray-500">{{ task.taskId }}</span>
-                          </p>
+                          </div>
                         </div>
                       </td>
                       <!-- <td
@@ -304,7 +307,7 @@
                         class="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                       >
                         <div class="flex">
-                          <p
+                          <div
                             @click="goTaskWhere(task.taskId, task.submitCode)"
                             class="group inline-flex space-x-2 truncate text-sm"
                           >
@@ -318,7 +321,7 @@
                               {{ task.taskName }}
                             </p>
                             <span class="text-gray-500">{{ task.taskId }}</span>
-                          </p>
+                          </div>
                         </div>
                       </td>
                       <td
@@ -455,7 +458,7 @@
                         class="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                       >
                         <div class="flex">
-                          <p
+                          <div
                             @click="goTaskWhere(task.taskId, task.submitCode)"
                             class="group inline-flex space-x-2 truncate text-sm"
                           >
@@ -469,7 +472,7 @@
                               {{ task.taskName }}
                             </p>
                             <span class="text-gray-500">{{ task.taskId }}</span>
-                          </p>
+                          </div>
                         </div>
                       </td>
                       <td
@@ -522,7 +525,6 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { RouterLink } from 'vue-router';
 // components
 import InfoAlert from '@/components/InfoAlert.vue';
 // icons
@@ -589,7 +591,7 @@ const doGetAllTasks = async () => {
       // 给点数据缓冲时间
       setTimeout(() => {
         isViewShow.value = true;
-      }, 400);
+      }, 500);
     });
 };
 

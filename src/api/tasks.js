@@ -59,7 +59,7 @@ export function getTasks(data) {
  * @returns {String} data.data.[].voicePath 作业题目音频地址（英语听力会有）
  * @returns {Number} data.data.[].teaType 作业题目类型 "客观题"｜"主观题"
  * @returns {String} data.data.[].teaQueType 作业题目类型 "单选题"｜"多选题"｜"主观题"
- * @returns {Array[String]} data.data.[].teaOption 作业题目选项 客观题返回字符串类型选项，主观题返回空数组
+ * @returns {Array[String]} data.data.[].teaOption 作业题目选项 客观题返回选项，主观题返回空数组
  * @returns {String} data.data.[].hasSubjectiveItem 作业是否有主观题 0无主观题｜1有主观题
  * @returns {String} data.data.[].taskId 作业id
  * @returns {Array} data.data.[].children （暂未知，可能是二级题目？）

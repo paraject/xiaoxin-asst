@@ -66,8 +66,9 @@ service.interceptors.response.use(
           case '0':
             break;
           default:
-            window.$message.error(`${response.data.msg}`);
-            console.log(response);
+            if (response.data.msg) {
+              window.$message.error(`${response.data.msg}`);
+            }
         }
       }
       return response;
@@ -101,10 +102,10 @@ service.interceptors.response.use(
       case 401:
         if (cont == 0) {
           window.$message.error('登录过期，请重新登录');
+          localStorage.removeItem('token');
+          router.push('/');
         }
         cont++;
-        localStorage.removeItem('token');
-        router.push('/');
         break;
       case 403:
         window.$message.error('拒绝访问(403)');

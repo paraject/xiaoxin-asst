@@ -76,8 +76,9 @@
                       当您初次登录到小鑫作业官网时，会被强制要求修改密码，并绑定手机号，以提高账户安全等级。
                     </p>
                     <p class="mt-2 text-sm text-gray-500">
-                      因此，为了保护您的账户安全，自 2022 年 11 月 30
-                      日起，小鑫作业助手将仅允许使用手机号登录。若您从未登录过您的账户，您应该先在官网登录，按照指引修改密码并绑定手机号。
+                      因此，为了保护您的账户安全，自 2022 年 11 月 30 日起，小鑫
+                      Plus
+                      将仅允许使用手机号登录。若您从未登录过您的账户，您应该先在官网登录，按照指引修改密码并绑定手机号。
                     </p>
                   </div>
                 </div>
@@ -119,7 +120,7 @@
             alt="Xiaoxin Logo"
           />
           <h2 class="mt-6 text-2xl lg:text-3xl font-medium text-gray-900">
-            登录到小鑫助手
+            登录到小鑫 Plus
           </h2>
           <p class="mt-2 text-sm text-gray-600">
             使用您的
@@ -143,7 +144,7 @@
             </div>
             <div class="ml-3 flex-1">
               <p class="text-sm text-blue-700">
-                自从 2022 年 11 月 30 日起，小鑫作业助手将不再支持唯一号登录。
+                自从 2022 年 11 月 30 日起，小鑫 Plus 将不再支持唯一号登录。
                 <a
                   @click="onInfoAlertDialogOpen"
                   class="cursor-pointer whitespace-nowrap font-medium text-blue-700 hover:text-blue-600"

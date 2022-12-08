@@ -13,7 +13,6 @@ const useTaskInfoStore = defineStore('task-info', {
       const { task, data, state } = res.data;
       if (state == 'ok') {
         this.taskInfo = { task, data };
-        console.log(this.taskInfo);
       }
     },
   },

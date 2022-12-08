@@ -72,18 +72,21 @@ router.beforeEach(async (to) => {
     : !JSON.parse(localStorage.user).user.token
     ? false
     : true;
-  if (to.meta.requiresAuth && !isLogin) {
-    return {
-      path: '/login',
-      query: { redirect: to.fullPath },
-    };
-  }
+  // 开发环境跳过登录
+  if (!import.meta.env.DEV) {
+    if (to.meta.requiresAuth && !isLogin) {
+      return {
+        path: '/login',
+        query: { redirect: to.fullPath },
+      };
+    }
 
-  // 已登录时不允许进入登录页
-  if (to.meta.isLoginView && isLogin) {
-    return {
-      path: '/',
-    };
+    // 已登录时不允许进入登录页
+    if (to.meta.isLoginView && isLogin) {
+      return {
+        path: '/',
+      };
+    }
   }
 });
 
