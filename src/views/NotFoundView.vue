@@ -87,7 +87,7 @@
                   </DialogTitle>
                   <div>
                     <p class="mt-2 text-sm text-gray-500">
-                      没什么，不过是又有用户违反不宣传原则罢了。
+                      没什么，不过是又被宣传了。
                     </p>
                     <p class="mt-2 text-sm text-gray-500">
                       暂时停服冷却，恢复时间待定。
