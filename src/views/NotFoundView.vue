@@ -25,10 +25,10 @@
               追问？
             </button>
             <button
-              href="https://qm.qq.com/cgi-bin/qm/qr?k=oODhHNppngYT8cXnCQeUT3glwEYdjmRd&jump_from=webapi&authKey=3k9HnJVMowzprwEvZjA5ioj7i67Crk8nF6WR6KRmVSKGQQy8+y1vbdRAyTk+TI3P"
+              href=""
               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-500 bg-primary-100 hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
-              详细咨询
+              睡觉
             </button>
           </div>
         </div>
@@ -87,18 +87,15 @@
                   </DialogTitle>
                   <div>
                     <p class="mt-2 text-sm text-gray-500">
-                      今天（12月12日）又有用户违反不宣传原则，这次是钉钉班群，影响范围超广，这可能会带来一些大家都难以承担的后果。
+                      没什么，不过是又有用户违反不宣传原则罢了。
                     </p>
                     <p class="mt-2 text-sm text-gray-500">
-                      面对这一现象，我们又慌了，决定停服冷却。
+                      暂时停服冷却，恢复时间待定。
                     </p>
                     <p class="mt-2 text-sm text-gray-500">
                       上次还是在 11 月 31 日，距今仅仅十二天，令人感叹。
                     </p>
-                    <p class="mt-2 text-sm text-gray-500">
-                      希望大家别再走火了。
-                    </p>
-                    <p class="mt-2 text-sm text-gray-500">
+                    <!-- <p class="mt-2 text-sm text-gray-500">
                       (A-Z)
                     </p>
                     <DialogTitle
@@ -153,7 +150,7 @@
                       还有使用助手的广大用户们<br />
                       <br />
                       <i><strong>———包括你。</strong></i>
-                    </p>
+                    </p> -->
                     <p class="mt-4 text-sm text-gray-500"
                       >以上。<br />二〇二二年十二月十二日戌时<br />PARAJECT
                       社团</p
